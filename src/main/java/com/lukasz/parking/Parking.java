@@ -1,16 +1,15 @@
 package com.lukasz.parking;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.lukasz.employee.Employee;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
-@Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 @Table(name = "PARKING")
 public class Parking {
     @Id
@@ -26,7 +25,7 @@ public class Parking {
     //@OneToMany(mappedBy = "parking")
     //private List<Employee> employees;
 
-//TODO JEDYNE CO NIE DZIALA TERAZ TO TO ZE POST NA PARKINGU DODAJE ZAWSZE PUSTEGO OBIEKTA
+    //TODO JEDYNE CO NIE DZIALA TERAZ TO TO ZE POST NA PARKINGU DODAJE ZAWSZE PUSTEGO OBIEKTA
 
 
 /*
@@ -36,20 +35,6 @@ public class Parking {
     @OneToMany(mappedBy = "parking")
     private List<Bill> bills;
 */
-
-
-    public Parking() {
-    }
-
-
-    public Parking(Integer parkingId, String name) {
-        this.parkingId = parkingId;
-        this.name = name;
-    }
-
-    public Parking(Parking parking) {
-
-    }
 
     @Override
     public String toString() {

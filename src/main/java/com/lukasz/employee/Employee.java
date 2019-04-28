@@ -1,13 +1,15 @@
 package com.lukasz.employee;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lukasz.parking.Parking;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
@@ -24,23 +26,10 @@ public class Employee {
     @Column
     private String position;
 
-   // @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    //@JsonBackReference(value = "blad w employe")
     @JoinColumn(name = "parkingId")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Parking parking;
 
-    public Employee() {
-
-    }
-
-    public Employee(Integer employeeId, String name, String surname, String position, Parking parking) {
-        this.employeeId = employeeId;
-        this.name = name;
-        this.surname = surname;
-        this.position = position;
-        this.parking = parking;
-    }
 
     @Override
     public String toString() {

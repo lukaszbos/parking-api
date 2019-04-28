@@ -17,16 +17,6 @@ public class EmployeeService {
         return employees;
     }
 
-/*
-    public Resources<Resource<Employee>> getLocations() {
-
-        List<Resource<Employee>> locations = employeeRepository.getOne(Id).getLocations().stream()
-                .map(locationResourceAssembler::toResource)
-                .collect(Collectors.toList());
-
-        return new Resources<>(locations);
-    }
-    */
 
     public Employee getEmployee(Integer employeeId) {
         return employeeRepository.findById(employeeId).orElse(null);
