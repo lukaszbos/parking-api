@@ -12,30 +12,29 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping()
-    public List<Employee> getAllEmployees(@PathVariable Integer parkingId) {
-        return employeeService.getEmployees(parkingId);
+    @GetMapping
+    public List<Employee> getEmployee(@RequestParam(name = "parkingId", defaultValue = "") Integer parkingId) {
+        return employeeService.getEmployee(parkingId);
     }
 
     @GetMapping(value = "/{employeeId}")
-    public Employee getEmployee(@PathVariable Integer parkingId, @PathVariable Integer employeeId) {
-        return employeeService.getEmployee(employeeId);
+    public Employee getEmployeeById(@PathVariable Integer parkingId, @PathVariable Integer employeeId) {
+        return employeeService.getEmployeeById(employeeId);
     }
 
     @PostMapping()
     public void addEmployee(@RequestBody Employee employee, @PathVariable Integer parkingId) {
-        employee.setParking(new Parking(parkingId, ""));
-        employeeService.addEmployee(employee);
+        employeeService.addEmployee(employee, parkingId);
     }
 
     @PutMapping(value = "/{employeeId}")
     public void updateEmployee(@RequestBody Employee employee, @PathVariable Integer parkingId, @PathVariable Integer employeeId) {
         employee.setParking(new Parking(parkingId, ""));
-        employeeService.updateEmployee(employee);
+        employeeService.updateEmployee(employee, parkingId);
     }
 
     @DeleteMapping(value = "/{employeeId}")
-    public void deleteCourse(@PathVariable Integer employeeId) {
+    public void deleteEmployee(@PathVariable Integer employeeId) {
         employeeService.deleteEmployee(employeeId);
     }
 }
