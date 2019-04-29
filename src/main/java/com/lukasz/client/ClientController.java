@@ -1,36 +1,35 @@
 package com.lukasz.client;
 
-import com.lukasz.parking.Parking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/parkings/{parkingId}/clients")
+@RequestMapping("parkings/{parkingId}/bills/{billId}/clients")
 public class ClientController {
     @Autowired
     private ClientService clientService;
 
     @GetMapping
-    public List<Client> getClients(@RequestParam(name = "parkingId", defaultValue = "") Integer parkingId) {
-        return clientService.getClients(parkingId);
+    public List<Client> getClients(@RequestParam(name = "billId", defaultValue = "") Integer billId) {
+        return clientService.getClients(billId);
     }
 
     @GetMapping(value = "/{clientId}")
-    public Client getClientById(@PathVariable Integer parkingId, @PathVariable Integer clientId) {
+    public Client getClientById(@PathVariable Integer billId, @PathVariable Integer clientId) {
         return clientService.getClientById(clientId);
     }
 
     @PostMapping()
-    public void addClient(@RequestBody Client client, @PathVariable Integer parkingId) {
-        clientService.addClient(client, parkingId);
+    public void addClient(@RequestBody Client client, @PathVariable Integer billId) {
+        clientService.addClient(client, billId);
     }
 
     @PutMapping(value = "/{clientId}")
-    public void updateClient(@RequestBody Client client, @PathVariable Integer parkingId, @PathVariable Integer clientId) {
-        //client.setParking(new Parking(parkingId, ""));
-        clientService.updateClient(client, parkingId);
+    public void updateClient(@RequestBody Client client, @PathVariable Integer billId, @PathVariable Integer clientId) {
+        //client.setParking(new Parking(billId, ""));
+        clientService.updateClient(client, billId);
     }
 
     @DeleteMapping(value = "/{clientId}")

@@ -1,7 +1,7 @@
 package com.lukasz.client;
 
-import com.lukasz.parking.Parking;
-import com.lukasz.parking.ParkingRepository;
+import com.lukasz.bill.Bill;
+import com.lukasz.bill.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,29 +10,29 @@ import java.util.List;
 
 @Service
 public class ClientService {
-    private ParkingRepository parkingRepository;
+    private BillRepository billRepository;
     private ClientRepository clientRepository;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, ParkingRepository parkingRepository) {
+    public ClientService(ClientRepository clientRepository, BillRepository billRepository) {
         this.clientRepository = clientRepository;
-        this.parkingRepository = parkingRepository;
+        this.billRepository = billRepository;
     }
 
-    public List<Client> getClients(Integer parkingId) {
-        if (isIdSent(parkingId)) {
-            return getClientsWorkingOnParking(parkingId);
+    public List<Client> getClients(Integer billId) {
+        if (isIdSent(billId)) {
+            return getClientsWorkingOnBill(billId);
         } else
             return getAllClients();
     }
 
-    private boolean isIdSent(Integer parkingParam) {
-        return parkingParam != null;
+    private boolean isIdSent(Integer billParam) {
+        return billParam != null;
     }
 
-    public List<Client> getClientsWorkingOnParking(Integer parkingId) {
+    public List<Client> getClientsWorkingOnBill(Integer billId) {
         List<Client> clients = new ArrayList<>();
-        clientRepository.findByParking_ParkingId(parkingId).forEach(clients::add);
+        clientRepository.findByBill_BillId(billId).forEach(clients::add);
         return clients;
     }
 
@@ -47,19 +47,19 @@ public class ClientService {
         return clientRepository.findById(clientId).orElse(null);
     }
 
-    public void addClient(Client client, Integer parkingId) {
-        Parking parkingOnWithClientWorks = getAccurateParking(parkingId);
-        client.setParking(parkingOnWithClientWorks);
+    public void addClient(Client client, Integer billId) {
+        Bill billOnWithClientWorks = getAccurateBill(billId);
+        client.setBill(billOnWithClientWorks);
         clientRepository.save(client);
     }
 
-    private Parking getAccurateParking(Integer parkingId) {
-        return parkingRepository.findById(parkingId).get();
+    private Bill getAccurateBill(Integer billId) {
+        return billRepository.findById(billId).get();
     }
 
-    public void updateClient(Client client, Integer parkingId) {
-        Parking parkingOnWithClientWorks = getAccurateParking(parkingId);
-        client.setParking(parkingOnWithClientWorks);
+    public void updateClient(Client client, Integer billId) {
+        Bill billOnWithClientWorks = getAccurateBill(billId);
+        client.setBill(billOnWithClientWorks);
         clientRepository.save(client);
     }
 

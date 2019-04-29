@@ -1,9 +1,13 @@
 package com.lukasz.bill;
 
 import com.lukasz.parking.Parking;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.Clock;
 
 @Data
 @AllArgsConstructor
@@ -11,15 +15,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "BILL")
 public class Bill {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer billId;
-
-    @Column
     private Integer numberOfHours;
-
-    @Column
-    private Integer cost;
+    private BigDecimal cost;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "parkingId")

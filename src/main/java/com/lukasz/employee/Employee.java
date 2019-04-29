@@ -13,17 +13,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer employeeId;
-
-    @Column
     private String name;
-
-    @Column
     private String surname;
-
-    @Column
     private String position;
 
     @JoinColumn(name = "parkingId")

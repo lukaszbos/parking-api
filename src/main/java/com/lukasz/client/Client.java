@@ -1,8 +1,9 @@
 package com.lukasz.client;
 
-
-import com.lukasz.parking.Parking;
-import lombok.*;
+import com.lukasz.bill.Bill;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -12,19 +13,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CLIENT")
 public class Client {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer clientId;
-
-    @Column
     private String name;
-
-    @Column
     private String surname;
 
-    @JoinColumn(name = "parkingId")
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    private Parking parking;
+    @JoinColumn(name = "billId")
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    private Bill bill;
 
     //@OneToMany(mappedBy = "client")
     //private List<Bill> bills;
@@ -37,4 +34,5 @@ public class Client {
                 ", surname='" + surname + '\'' +
                 '}';
     }
+
 }
