@@ -24,7 +24,6 @@ public class Employee {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Parking parking;
 
-
     @Override
     public String toString() {
         return "EmploeeEntity{" +

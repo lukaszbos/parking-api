@@ -19,7 +19,7 @@ public class ClientService {
         this.billRepository = billRepository;
     }
 
-    public List<Client> getClients(Integer billId) {
+    List<Client> getClients(Integer billId) {
         if (isIdSent(billId)) {
             return getClientsWorkingOnBill(billId);
         } else
@@ -30,24 +30,23 @@ public class ClientService {
         return billParam != null;
     }
 
-    public List<Client> getClientsWorkingOnBill(Integer billId) {
+    private List<Client> getClientsWorkingOnBill(Integer billId) {
         List<Client> clients = new ArrayList<>();
         clientRepository.findByBill_BillId(billId).forEach(clients::add);
         return clients;
     }
 
-    public List<Client> getAllClients() {
+    private List<Client> getAllClients() {
         List<Client> clients = new ArrayList<>();
         clientRepository.findAll().forEach(clients::add);
         return clients;
     }
 
-
-    public Client getClientById(Integer clientId) {
+    Client getClientById(Integer clientId) {
         return clientRepository.findById(clientId).orElse(null);
     }
 
-    public void addClient(Client client, Integer billId) {
+    void addClient(Client client, Integer billId) {
         Bill billOnWithClientWorks = getAccurateBill(billId);
         client.setBill(billOnWithClientWorks);
         clientRepository.save(client);
@@ -57,13 +56,13 @@ public class ClientService {
         return billRepository.findById(billId).get();
     }
 
-    public void updateClient(Client client, Integer billId) {
+    void updateClient(Client client, Integer billId) {
         Bill billOnWithClientWorks = getAccurateBill(billId);
         client.setBill(billOnWithClientWorks);
         clientRepository.save(client);
     }
 
-    public void deleteClient(Integer clientId) {
+    void deleteClient(Integer clientId) {
         clientRepository.deleteById(clientId);
     }
 }

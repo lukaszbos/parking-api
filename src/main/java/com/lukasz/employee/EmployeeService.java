@@ -19,7 +19,7 @@ public class EmployeeService {
         this.parkingRepository = parkingRepository;
     }
 
-    public List<Employee> getEmployee(Integer parkingId) {
+    List<Employee> getEmployee(Integer parkingId) {
         if (isIdSent(parkingId)) {
             return getEmployeesWorkingOnParking(parkingId);
         } else
@@ -30,24 +30,23 @@ public class EmployeeService {
         return parkingId != null;
     }
 
-    public List<Employee> getEmployeesWorkingOnParking(Integer parkingId) {
+    private List<Employee> getEmployeesWorkingOnParking(Integer parkingId) {
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findByParking_ParkingId(parkingId).forEach(employees::add);
         return employees;
     }
 
-    public List<Employee> getAllEmployees() {
+    private List<Employee> getAllEmployees() {
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findAll().forEach(employees::add);
         return employees;
     }
 
-
-    public Employee getEmployeeById(Integer employeeId) {
+    Employee getEmployeeById(Integer employeeId) {
         return employeeRepository.findById(employeeId).get();
     }
 
-    public void addEmployee(Employee employee, Integer parkingId) {
+    void addEmployee(Employee employee, Integer parkingId) {
         Parking parkingOnWithEmployeeWorks = getAccurateParking(parkingId);
         employee.setParking(parkingOnWithEmployeeWorks);
         employeeRepository.save(employee);
@@ -57,13 +56,13 @@ public class EmployeeService {
         return parkingRepository.findById(parkingId).get();
     }
 
-    public void updateEmployee(Employee employee, Integer parkingId) {
+    void updateEmployee(Employee employee, Integer parkingId) {
         Parking parkingOnWithEmployeeWorks = getAccurateParking(parkingId);
         employee.setParking(parkingOnWithEmployeeWorks);
         employeeRepository.save(employee);
     }
 
-    public void deleteEmployee(Integer employeeId) {
+    void deleteEmployee(Integer employeeId) {
         employeeRepository.deleteById(employeeId);
     }
 }

@@ -23,9 +23,6 @@ public class Client {
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     private Bill bill;
 
-    //@OneToMany(mappedBy = "client")
-    //private List<Bill> bills;
-
     @Override
     public String toString() {
         return "ClientEntity{" +
@@ -34,5 +31,4 @@ public class Client {
                 ", surname='" + surname + '\'' +
                 '}';
     }
-
 }

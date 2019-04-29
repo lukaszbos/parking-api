@@ -13,7 +13,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping
-    public List<Employee> getEmployee(@RequestParam(name = "parkingId", defaultValue = "") Integer parkingId) {
+    public List<Employee> getEmployee(@RequestParam(name = "parkingId") Integer parkingId) {
         return employeeService.getEmployee(parkingId);
     }
 

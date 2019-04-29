@@ -12,7 +12,7 @@ public class BillController {
     private BillService billService;
 
     @GetMapping()
-    public List<Bill> getBill(@RequestParam(name = "parkingId", defaultValue = "") Integer parkingId) {
+    public List<Bill> getBill(@RequestParam(name = "parkingId") Integer parkingId) {
         return billService.getBills(parkingId);
     }
 

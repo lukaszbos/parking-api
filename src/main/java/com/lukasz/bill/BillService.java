@@ -19,31 +19,30 @@ public class BillService {
         this.billRepository = billRepository;
     }
 
-
-    public List<Bill> getBills(Integer parkingId) {
+    List<Bill> getBills(Integer parkingId) {
         if (isParkingIdSent(parkingId)) {
             return getBillsByParkingId(parkingId);
         } else
             return getAllBills();
     }
 
-    public boolean isParkingIdSent(Integer parkingId) {
+    private boolean isParkingIdSent(Integer parkingId) {
         return parkingId != null;
     }
 
-    public List<Bill> getBillsByParkingId(Integer parkingId) {
+    private List<Bill> getBillsByParkingId(Integer parkingId) {
         List<Bill> bills = new ArrayList<>();
         billRepository.findByParking_ParkingId(parkingId).forEach(bills::add);
         return bills;
     }
 
-    public List<Bill> getAllBills() {
+    private List<Bill> getAllBills() {
         List<Bill> bills = new ArrayList<>();
         billRepository.findAll().forEach(bills::add);
         return bills;
     }
 
-    public void addBill(Bill bill, Integer parkingId) {
+    void addBill(Bill bill, Integer parkingId) {
         Parking parkingOnWithBillIs = getAccurateParking(parkingId);
         bill.setParking(parkingOnWithBillIs);
         billRepository.save(bill);
@@ -53,18 +52,17 @@ public class BillService {
         return parkingRepository.findById(parkingId).get();
     }
 
-
-    public Bill getBillById(Integer billId) {
+    Bill getBillById(Integer billId) {
         return billRepository.findById(billId).get();
     }
 
-    public void updateBill(Bill bill, Integer parkingId) {
+    void updateBill(Bill bill, Integer parkingId) {
         Parking parkingOnWithBillIs = getAccurateParking(parkingId);
         bill.setParking(parkingOnWithBillIs);
         billRepository.save(bill);
     }
 
-    public void deleteBill(Integer billId) {
+    void deleteBill(Integer billId) {
         billRepository.deleteById(billId);
     }
 }

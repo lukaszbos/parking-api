@@ -12,7 +12,7 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping
-    public List<Client> getClients(@RequestParam(name = "billId", defaultValue = "") Integer billId) {
+    public List<Client> getClients(@RequestParam(name = "billId") Integer billId) {
         return clientService.getClients(billId);
     }
 
@@ -28,7 +28,6 @@ public class ClientController {
 
     @PutMapping(value = "/{clientId}")
     public void updateClient(@RequestBody Client client, @PathVariable Integer billId, @PathVariable Integer clientId) {
-        //client.setParking(new Parking(billId, ""));
         clientService.updateClient(client, billId);
     }
 
