@@ -46,19 +46,36 @@ public class EmployeeService {
         return employeeRepository.findById(employeeId).get();
     }
 
-    void addEmployee(Employee employee, Integer parkingId) {
-        Parking parkingOnWithEmployeeWorks = getAccurateParking(parkingId);
-        employee.setParking(parkingOnWithEmployeeWorks);
+    void addEmployee(Employee employee) {
+        assembleTheEmployee(employee);
         employeeRepository.save(employee);
     }
 
-    private Parking getAccurateParking(Integer parkingId) {
+    private void assembleTheEmployee(Employee employee) {
+        Parking parkingOfEmployee = assembleParking(employee);
+        employee.setParking(parkingOfEmployee);
+    }
+
+    private Parking assembleParking(Employee employee) {
+        Integer parkingIdOfEmployee = employee.getParking().getParkingId();
+        String parkingNameOfEmployee = employee.getParking().getName();
+
+        if (isThisParkingInMyRepo(parkingIdOfEmployee))
+            return getParkingById(parkingIdOfEmployee);
+        else
+            return new Parking(parkingIdOfEmployee, parkingNameOfEmployee);
+    }
+
+    private boolean isThisParkingInMyRepo(Integer parkingIdFromEmployee) {
+        return parkingRepository.existsById(parkingIdFromEmployee);
+    }
+
+    private Parking getParkingById(Integer parkingId) {
         return parkingRepository.findById(parkingId).get();
     }
 
-    void updateEmployee(Employee employee, Integer parkingId) {
-        Parking parkingOnWithEmployeeWorks = getAccurateParking(parkingId);
-        employee.setParking(parkingOnWithEmployeeWorks);
+    void updateEmployee(Employee employee) {
+        assembleTheEmployee(employee);
         employeeRepository.save(employee);
     }
 

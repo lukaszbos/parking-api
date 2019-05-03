@@ -1,5 +1,9 @@
 package com.lukasz;
 
+import com.lukasz.client.Client;
+import com.lukasz.client.ClientRepository;
+import com.lukasz.employee.Employee;
+import com.lukasz.employee.EmployeeRepository;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
 import org.springframework.boot.ApplicationRunner;
@@ -14,10 +18,17 @@ public class SerwisApiApp {
     }
 
     @Bean
-    ApplicationRunner applicationRunner(ParkingRepository parkingRepository) {
+    ApplicationRunner applicationRunner(ParkingRepository parkingRepository, ClientRepository clientRepository, EmployeeRepository employeeRepository) {
+        Parking parking = new Parking(1, "parking");
         return args -> {
-            parkingRepository.save(new Parking(1, "parking"));
+            parkingRepository.save(parking);
+            clientRepository.save(new Client(1, "Jan", "Gora"));
+            clientRepository.save(new Client(2, "Zbigniew", "Jankowski"));
+            employeeRepository.save(new Employee(1, "Henryk", "Topor", "parkingowy", parking));
         };
     }
-
 }
+/*
+
+
+ */

@@ -1,13 +1,12 @@
 package com.lukasz.employee;
 
-import com.lukasz.parking.Parking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/parkings/{parkingId}/employees")
+@RequestMapping("/employees")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -18,19 +17,18 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/{employeeId}")
-    public Employee getEmployeeById(@PathVariable Integer parkingId, @PathVariable Integer employeeId) {
+    public Employee getEmployeeById(@PathVariable Integer employeeId) {
         return employeeService.getEmployeeById(employeeId);
     }
 
     @PostMapping()
-    public void addEmployee(@RequestBody Employee employee, @PathVariable Integer parkingId) {
-        employeeService.addEmployee(employee, parkingId);
+    public void addEmployee(@RequestBody Employee employee) {
+        employeeService.addEmployee(employee);
     }
 
     @PutMapping(value = "/{employeeId}")
-    public void updateEmployee(@RequestBody Employee employee, @PathVariable Integer parkingId, @PathVariable Integer employeeId) {
-        employee.setParking(new Parking(parkingId, ""));
-        employeeService.updateEmployee(employee, parkingId);
+    public void updateEmployee(@RequestBody Employee employee) {
+        employeeService.updateEmployee(employee);
     }
 
     @DeleteMapping(value = "/{employeeId}")

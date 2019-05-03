@@ -6,29 +6,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("parkings/{parkingId}/bills/{billId}/clients")
+@RequestMapping("/clients")
 public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping
-    public List<Client> getClients(@RequestParam(name = "billId") Integer billId) {
-        return clientService.getClients(billId);
+    @GetMapping()
+    public List<Client> getAllClients(@RequestParam Integer parkingId) {
+        return clientService.getAllClients();
     }
 
-    @GetMapping(value = "/{clientId}")
-    public Client getClientById(@PathVariable Integer billId, @PathVariable Integer clientId) {
+    @GetMapping("/{clientId}")
+    public Client getClientById(@PathVariable Integer clientId) {
         return clientService.getClientById(clientId);
     }
 
     @PostMapping()
-    public void addClient(@RequestBody Client client, @PathVariable Integer billId) {
-        clientService.addClient(client, billId);
+    public void addClient(@RequestBody Client client) {
+        clientService.addClient(client);
     }
 
     @PutMapping(value = "/{clientId}")
-    public void updateClient(@RequestBody Client client, @PathVariable Integer billId, @PathVariable Integer clientId) {
-        clientService.updateClient(client, billId);
+    public void updateClient(@RequestBody Client client, @PathVariable Integer clientId) {
+        clientService.updateClient(client, clientId);
     }
 
     @DeleteMapping(value = "/{clientId}")

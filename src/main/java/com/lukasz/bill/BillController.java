@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "parkings/{parkingId}/bills")
+@RequestMapping(value = "/bills")
 public class BillController {
     @Autowired
     private BillService billService;
 
     @GetMapping()
-    public List<Bill> getBill(@RequestParam(name = "parkingId") Integer parkingId) {
+    public List<Bill> getBill(@RequestParam Integer parkingId) {
         return billService.getBills(parkingId);
     }
 
@@ -22,13 +22,13 @@ public class BillController {
     }
 
     @PostMapping()
-    public void addBill(@RequestBody Bill bill, @PathVariable Integer parkingId) {
-        billService.addBill(bill, parkingId);
+    public void addBill(@RequestBody Bill bill) {
+        billService.addBill(bill);
     }
 
     @PutMapping(value = "/{billId}")
-    public void updateBill(@RequestBody Bill bill, @PathVariable Integer parkingId, @PathVariable Integer billId) {
-        billService.updateBill(bill, parkingId);
+    public void updateBill(@RequestBody Bill bill) {
+        billService.updateBill(bill);
     }
 
     @DeleteMapping(value = "/{billId}")

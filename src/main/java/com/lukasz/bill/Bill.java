@@ -1,5 +1,6 @@
 package com.lukasz.bill;
 
+import com.lukasz.client.Client;
 import com.lukasz.parking.Parking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,17 +21,12 @@ public class Bill {
     private Integer numberOfHours;
     private BigDecimal cost;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     @JoinColumn(name = "parkingId")
     private Parking parking;
 
-    @Override
-    public String toString() {
-        return "BillEntity{" +
-                "billId=" + billId +
-                ", numberOfHours='" + numberOfHours + '\'' +
-                ", cost='" + cost + '\'' +
-                ", parking='" + parking + '\'' +
-                '}';
-    }
+    @JoinColumn(name = "clientId")
+    @ManyToOne
+    private Client client;
+
 }

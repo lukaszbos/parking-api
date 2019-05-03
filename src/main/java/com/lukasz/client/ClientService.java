@@ -1,7 +1,5 @@
 package com.lukasz.client;
 
-import com.lukasz.bill.Bill;
-import com.lukasz.bill.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,33 +8,14 @@ import java.util.List;
 
 @Service
 public class ClientService {
-    private BillRepository billRepository;
     private ClientRepository clientRepository;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, BillRepository billRepository) {
+    public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
-        this.billRepository = billRepository;
     }
 
-    List<Client> getClients(Integer billId) {
-        if (isIdSent(billId)) {
-            return getClientsWorkingOnBill(billId);
-        } else
-            return getAllClients();
-    }
-
-    private boolean isIdSent(Integer billParam) {
-        return billParam != null;
-    }
-
-    private List<Client> getClientsWorkingOnBill(Integer billId) {
-        List<Client> clients = new ArrayList<>();
-        clientRepository.findByBill_BillId(billId).forEach(clients::add);
-        return clients;
-    }
-
-    private List<Client> getAllClients() {
+    List<Client> getAllClients() {
         List<Client> clients = new ArrayList<>();
         clientRepository.findAll().forEach(clients::add);
         return clients;
@@ -46,20 +25,16 @@ public class ClientService {
         return clientRepository.findById(clientId).orElse(null);
     }
 
-    void addClient(Client client, Integer billId) {
-        Bill billOnWithClientWorks = getAccurateBill(billId);
-        client.setBill(billOnWithClientWorks);
+    void addClient(Client client) {
         clientRepository.save(client);
     }
 
-    private Bill getAccurateBill(Integer billId) {
-        return billRepository.findById(billId).get();
+    void updateClient(Client client, Integer clientId) {
+        clientRepository.save(client);
     }
 
-    void updateClient(Client client, Integer billId) {
-        Bill billOnWithClientWorks = getAccurateBill(billId);
-        client.setBill(billOnWithClientWorks);
-        clientRepository.save(client);
+    private boolean isThisClientOnRepo(Integer clientId) {
+        return clientRepository.existsById(clientId);
     }
 
     void deleteClient(Integer clientId) {

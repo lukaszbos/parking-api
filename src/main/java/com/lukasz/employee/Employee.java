@@ -21,17 +21,7 @@ public class Employee {
     private String position;
 
     @JoinColumn(name = "parkingId")
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne
     private Parking parking;
 
-    @Override
-    public String toString() {
-        return "EmploeeEntity{" +
-                "employeeId=" + employeeId +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", position='" + position + '\'' +
-                ", parking='" + parking + '\'' +
-                '}';
-    }
 }

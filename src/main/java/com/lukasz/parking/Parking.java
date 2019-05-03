@@ -15,15 +15,6 @@ public class Parking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer parkingId;
-
-    @Column
     private String name;
 
-    @Override
-    public String toString() {
-        return "ParkingEntity{" +
-                "id=" + parkingId +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }
