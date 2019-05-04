@@ -27,8 +27,21 @@ public class SerwisApiApp {
             employeeRepository.save(new Employee(1, "Henryk", "Topor", "parkingowy", parking));
         };
     }
+
+
 }
 /*
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+                <scope>runtime</scope>
+        </dependency>
 
+                <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.199</version>
+            <scope>test</scope>
+        </dependency>
 
  */

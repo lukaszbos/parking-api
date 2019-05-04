@@ -1,16 +1,22 @@
 package com.lukasz.parking;
 
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@NoArgsConstructor
 @RequestMapping("/parkings")
 public class ParkingController {
 
-    @Autowired
     private ParkingService parkingService;
+
+    @Autowired
+    public ParkingController(ParkingService parkingService) {
+        this.parkingService = parkingService;
+    }
 
     @GetMapping()
     public List<Parking> getAllParkings() {
