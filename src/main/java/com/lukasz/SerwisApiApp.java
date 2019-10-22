@@ -6,17 +6,29 @@ import com.lukasz.employee.Employee;
 import com.lukasz.employee.EmployeeRepository;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
+import com.lukasz.utils.Tariff;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
+import static com.lukasz.utils.ChargeCalculator.calculateCharge;
+import static com.lukasz.utils.ChargeCalculator.calculateTimeSpent;
+import static java.lang.Thread.sleep;
+
 @SpringBootApplication
 public class SerwisApiApp {
-    public static void main(String[] args) {
-        SpringApplication.run(SerwisApiApp.class, args);
+    public static void main(String[] args) throws InterruptedException {
+        Date parkingDate = new Date();
+        Tariff tariff = new Tariff(BigDecimal.valueOf(10.00), BigDecimal.valueOf(8.00));
+        BigDecimal charge = calculateCharge(parkingDate, tariff);
+        System.out.println(charge);
+        // SpringApplication.run(SerwisApiApp.class, args);
     }
-
+/*
     @Bean
     ApplicationRunner applicationRunner(ParkingRepository parkingRepository, ClientRepository clientRepository, EmployeeRepository employeeRepository) {
         Parking parking = new Parking(1, "parking");
@@ -28,6 +40,7 @@ public class SerwisApiApp {
         };
     }
 
+*/
 
 }
 /*

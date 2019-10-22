@@ -2,24 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e94ccb2a-f13e-484c-a7d6-a6a84204403f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/Tariff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parking-api.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/Parking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/Parking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/parking-api.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/employee/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/employee/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/parking/Parking.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/parking/Parking.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/parking-api.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/lukasz/parking/ParkingControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/lukasz/parking/ParkingControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,24 +22,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>h2</find>
-      <find>org.postgresql.Driver</find>
-      <find>Driver</find>
-      <find>Att</find>
-      <find>RequestAttribute</find>
-      <find>assembleParking</find>
-      <find>propert</find>
-    </findStrings>
-    <replaceStrings>
-      <replace />
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,6 +47,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -230,15 +209,6 @@
     <history-entry file="ParkingControllerTest_getParkingtestdsa - 2019.05.04 at 16h 50m 04s.xml">
       <configuration name="ParkingControllerTest.getParkingtestdsa" configurationId="JUnit" />
     </history-entry>
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

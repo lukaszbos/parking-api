@@ -50,10 +50,10 @@ public class BillService {
     }
 
     void addBill(Bill bill) {
-        assembleTheBill(bill);
+        //assembleTheBill(bill);
         billRepository.save(bill);
     }
-
+/*
     private void assembleTheBill(Bill bill) {
         Parking parkingOnBill = assembleParking(bill);
         bill.setParking(parkingOnBill);
@@ -98,13 +98,13 @@ public class BillService {
     private Client getClientById(Integer clientId) {
         return clientRepository.findById(clientId).get();
     }
-
+*/
     Bill getBillById(Integer billId) {
         return billRepository.findById(billId).get();
     }
 
     void updateBill(Bill bill) {
-        assembleTheBill(bill);
+        //assembleTheBill(bill);
         billRepository.save(bill);
     }
 
