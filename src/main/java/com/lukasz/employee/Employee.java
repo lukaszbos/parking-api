@@ -24,4 +24,7 @@ public class Employee {
     @ManyToOne
     private Parking parking;
 
+    public Employee(int employeeId, String name, String surname, String position, Parking parking) {
+
+    }
 }

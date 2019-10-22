@@ -12,8 +12,8 @@ public class BillController {
     private BillService billService;
 
     @GetMapping()
-    public List<Bill> getBill(@RequestParam Integer parkingId) {
-        return billService.getBills(parkingId);
+    public List<Bill> getBill(@RequestParam(required = false) Integer parkingId, @RequestParam(required = false) Integer clientId) {
+        return billService.getBills(parkingId, clientId);
     }
 
     @GetMapping(value = "/{billId}")

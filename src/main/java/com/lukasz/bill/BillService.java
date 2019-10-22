@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @Service
 public class BillService {
     private ParkingRepository parkingRepository;
@@ -23,20 +25,21 @@ public class BillService {
         this.clientRepository = clientRepository;
     }
 
-    List<Bill> getBills(Integer parkingId) {
-        if (isParkingIdSent(parkingId)) {
-            return getBillsByParkingId(parkingId);
-        } else
-            return getAllBills();
+    List<Bill> getBills(Integer parkingId, Integer clientId) {
+        return getBillsById(parkingId, clientId);
     }
 
-    private boolean isParkingIdSent(Integer parkingId) {
-        return parkingId != null;
-    }
 
-    private List<Bill> getBillsByParkingId(Integer parkingId) {
+    private List<Bill> getBillsById(Integer parkingId, Integer clientId) {
         List<Bill> bills = new ArrayList<>();
-        billRepository.findByParking_ParkingId(parkingId).forEach(bills::add);
+        if (!isNull(parkingId) && !isNull(clientId))
+            billRepository.findByParking_ParkingIdAndClient_ClientId(parkingId, clientId).forEach(bills::add);
+        if (!isNull(parkingId) && isNull(clientId))
+            billRepository.findByParking_ParkingId(parkingId).forEach(bills::add);
+        if (isNull(parkingId) && !isNull(clientId))
+            billRepository.findByClient_ClientId(clientId).forEach(bills::add);
+        else
+            getAllBills();
         return bills;
     }
 

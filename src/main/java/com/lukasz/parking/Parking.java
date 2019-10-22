@@ -17,4 +17,8 @@ public class Parking {
     private Integer parkingId;
     private String name;
 
+
+    public Parking(int parkingId, String name) {
+
+    }
 }

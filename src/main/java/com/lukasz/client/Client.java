@@ -18,4 +18,7 @@ public class Client {
     private String name;
     private String surname;
 
+    public Client(int clientId, String name, String surname) {
+
+    }
 }
