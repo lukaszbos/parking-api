@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static com.lukasz.utils.ChargeCalculator.calculateCharge;
@@ -22,13 +23,16 @@ import static java.lang.Thread.sleep;
 @SpringBootApplication
 public class SerwisApiApp {
     public static void main(String[] args) throws InterruptedException {
-        Date parkingDate = new Date();
-        Tariff tariff = new Tariff(BigDecimal.valueOf(10.00), BigDecimal.valueOf(8.00));
-        BigDecimal charge = calculateCharge(parkingDate, tariff);
-        System.out.println(charge);
-        // SpringApplication.run(SerwisApiApp.class, args);
+        LocalDateTime parkingData = LocalDateTime.of(2019, 10, 22, 8, 41, 1, 1);
+        Tariff tariff = new Tariff(BigDecimal.valueOf(10.29), BigDecimal.valueOf(8.00));
+
+        BigDecimal charge = calculateCharge(parkingData, tariff);
+        System.out.println("Parking date: " + parkingData);
+        System.out.println("Cena: " + charge);
+
+         SpringApplication.run(SerwisApiApp.class, args);
     }
-/*
+
     @Bean
     ApplicationRunner applicationRunner(ParkingRepository parkingRepository, ClientRepository clientRepository, EmployeeRepository employeeRepository) {
         Parking parking = new Parking(1, "parking");
@@ -40,7 +44,7 @@ public class SerwisApiApp {
         };
     }
 
-*/
+
 
 }
 /*

@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e94ccb2a-f13e-484c-a7d6-a6a84204403f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/Tariff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/Parking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/Parking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/utils/ChargeCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/utils/ChargeCalculator.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
