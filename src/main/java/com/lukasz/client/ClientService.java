@@ -5,14 +5,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ClientService {
-    private ClientRepository clientRepository;
+
+    private final ClientRepository clientRepository;
+    private final ClientMapper clientMapper;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, ClientMapper clientMapper) {
         this.clientRepository = clientRepository;
+        this.clientMapper = clientMapper;
     }
 
     List<Client> getAllClients() {
@@ -21,23 +25,26 @@ public class ClientService {
         return clients;
     }
 
-    Client getClientById(Integer clientId) {
-        return clientRepository.findById(clientId).orElse(null);
+    public ClientDTO getClientById(UUID clientId) {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Client not found :D :D :D "));
+        return clientMapper.toDTO(client);
     }
 
-    void addClient(Client client) {
+    public ClientDTO addClient(ClientDTO clientDTO) {
+        Client client = clientMapper.toModel(clientDTO);
+        Client addedClient = clientRepository.save(client);
+        return clientMapper.toDTO(addedClient);
+    }
+
+    void updateClient(Client client, UUID clientId) {
         clientRepository.save(client);
     }
 
-    void updateClient(Client client, Integer clientId) {
-        clientRepository.save(client);
-    }
-
-    private boolean isThisClientOnRepo(Integer clientId) {
+    private boolean isThisClientOnRepo(UUID clientId) {
         return clientRepository.existsById(clientId);
     }
 
-    void deleteClient(Integer clientId) {
+    void deleteClient(UUID clientId) {
         clientRepository.deleteById(clientId);
     }
 }

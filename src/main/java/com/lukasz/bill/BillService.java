@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
@@ -25,12 +26,12 @@ public class BillService {
         this.clientRepository = clientRepository;
     }
 
-    List<Bill> getBills(Integer parkingId, Integer clientId) {
+    List<Bill> getBills(Integer parkingId, UUID clientId) {
         return getBillsById(parkingId, clientId);
     }
 
 
-    private List<Bill> getBillsById(Integer parkingId, Integer clientId) {
+    private List<Bill> getBillsById(Integer parkingId, UUID clientId) {
         List<Bill> bills = new ArrayList<>();
         if (!isNull(parkingId) && !isNull(clientId))
             billRepository.findByParking_ParkingIdAndClient_ClientId(parkingId, clientId).forEach(bills::add);

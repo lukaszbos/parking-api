@@ -2,14 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e94ccb2a-f13e-484c-a7d6-a6a84204403f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/NotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/utils/ChargeCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/utils/ChargeCalculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientService.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +59,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556981957693" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Rampa/rampa/rampa/bin" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/demo/demo" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -175,38 +193,6 @@
       <updated>1556572432962</updated>
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 17m 59s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 22m 16s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 24m 34s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 25m 54s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 28m 44s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 32m 20s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 35m 23s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 42m 02s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParking - 2019.05.04 at 16h 45m 01s.xml">
-      <configuration name="ParkingControllerTest.getParking" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParkingControllerTest_getParkingtestdsa - 2019.05.04 at 16h 50m 04s.xml">
-      <configuration name="ParkingControllerTest.getParkingtestdsa" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

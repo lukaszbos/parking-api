@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/bills")
@@ -12,7 +13,7 @@ public class BillController {
     private BillService billService;
 
     @GetMapping()
-    public List<Bill> getBill(@RequestParam(required = false) Integer parkingId, @RequestParam(required = false) Integer clientId) {
+    public List<Bill> getBill(@RequestParam(required = false) Integer parkingId, @RequestParam(required = false) UUID clientId) {
         return billService.getBills(parkingId, clientId);
     }
 
