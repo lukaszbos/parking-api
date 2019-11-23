@@ -13,12 +13,12 @@ public class BillController {
     private BillService billService;
 
     @GetMapping()
-    public List<Bill> getBill(@RequestParam(required = false) Integer parkingId, @RequestParam(required = false) UUID clientId) {
+    public List<Bill> getBill(@RequestParam(required = false) Long parkingId, @RequestParam(required = false) UUID clientId) {
         return billService.getBills(parkingId, clientId);
     }
 
     @GetMapping(value = "/{billId}")
-    public Bill getBillById(@PathVariable Integer billId) {
+    public Bill getBillById(@PathVariable Long billId) {
         return billService.getBillById(billId);
     }
 
@@ -33,7 +33,7 @@ public class BillController {
     }
 
     @DeleteMapping(value = "/{billId}")
-    public void deleteBill(@PathVariable Integer billId) {
+    public void deleteBill(@PathVariable Long billId) {
         billService.deleteBill(billId);
     }
 }

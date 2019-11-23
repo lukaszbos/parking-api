@@ -1,5 +1,6 @@
 package com.lukasz.parking;
 
+import com.lukasz.exception.NotFoundException;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@NoArgsConstructor
 class ParkingService {
+
+    private final ParkingRepository parkingRepository;
+    private final ParkingMapper parkingMapper;
+
     @Autowired
-    private ParkingRepository parkingRepository;
+    public ParkingService(ParkingRepository parkingRepository, ParkingMapper parkingMapper){
+        this.parkingRepository = parkingRepository;
+        this.parkingMapper = parkingMapper;
+    }
 
     List<Parking> getParkings(){
         List<Parking> parkings = new ArrayList<>();
@@ -20,19 +27,27 @@ class ParkingService {
         return parkings;
     }
 
-    Parking getParking(Integer parkingId){
-        return parkingRepository.findById(parkingId).orElse(null);
+    ParkingDTO getParking(Long parkingId){
+        Parking parking = parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
+        return parkingMapper.toDTO(parking);
     }
 
-    void addParking(Parking parking){
-        parkingRepository.save(parking);
+    ParkingDTO addParking(ParkingDTO parkingDTO){
+        Parking parking = parkingMapper.toModel(parkingDTO);
+        Parking addedParking = parkingRepository.save(parking);
+        return parkingMapper.toDTO(addedParking);
     }
 
-    void updateParking(Parking parking, Integer parkingId) {
-        parkingRepository.save(parking);
+    ParkingDTO  updateParking(ParkingDTO parkingDTO, Long parkingId) {
+        Parking parking = parkingMapper.toModel(parkingDTO);
+        parking.setParkingId(parkingId);
+        Parking addedParking = parkingRepository.save(parking);
+        return parkingMapper.toDTO(addedParking);
     }
 
-    void deleteParking(Integer parkingId) {
+     ParkingDTO deleteParking(Long parkingId) {
+        Parking parking = parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException (" Couldn't delete - parking not found  "));
         parkingRepository.deleteById(parkingId);
+        return parkingMapper.toDTO(parking);
     }
 }

@@ -1,5 +1,6 @@
 package com.lukasz.employee;
 
+import com.lukasz.exception.NotFoundException;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,27 +11,29 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
-    private EmployeeRepository employeeRepository;
-    private ParkingRepository parkingRepository;
+    private final EmployeeRepository employeeRepository;
+    private final ParkingRepository parkingRepository;
+    private final EmployeeMapper employeeMapper;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, ParkingRepository parkingRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, ParkingRepository parkingRepository, EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
         this.parkingRepository = parkingRepository;
+        this.employeeMapper = employeeMapper;
     }
 
-    List<Employee> getEmployee(Integer parkingId) {
+    List<Employee> getEmployee(Long parkingId) {
         if (isIdSent(parkingId)) {
             return getEmployeesWorkingOnParking(parkingId);
         } else
             return getAllEmployees();
     }
 
-    private boolean isIdSent(Integer parkingId) {
+    private boolean isIdSent(Long parkingId) {
         return parkingId != null;
     }
 
-    private List<Employee> getEmployeesWorkingOnParking(Integer parkingId) {
+    private List<Employee> getEmployeesWorkingOnParking(Long parkingId) {
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findByParking_ParkingId(parkingId).forEach(employees::add);
         return employees;
@@ -42,8 +45,9 @@ public class EmployeeService {
         return employees;
     }
 
-    Employee getEmployeeById(Integer employeeId) {
-        return employeeRepository.findById(employeeId).get();
+    EmployeeDTO getEmployeeById(Long employeeId) {
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new NotFoundException("Employee not found"));
+        return employeeMapper.toDTO(employee);
     }
 
     void addEmployee(Employee employee) {
@@ -57,7 +61,7 @@ public class EmployeeService {
     }
 
     private Parking assembleParking(Employee employee) {
-        Integer parkingIdOfEmployee = employee.getParking().getParkingId();
+        Long parkingIdOfEmployee = employee.getParking().getParkingId();
         String parkingNameOfEmployee = employee.getParking().getName();
 
         if (isThisParkingInMyRepo(parkingIdOfEmployee))
@@ -66,11 +70,11 @@ public class EmployeeService {
             return new Parking(parkingIdOfEmployee, parkingNameOfEmployee);
     }
 
-    private boolean isThisParkingInMyRepo(Integer parkingIdFromEmployee) {
+    private boolean isThisParkingInMyRepo(Long parkingIdFromEmployee) {
         return parkingRepository.existsById(parkingIdFromEmployee);
     }
 
-    private Parking getParkingById(Integer parkingId) {
+    private Parking getParkingById(Long parkingId) {
         return parkingRepository.findById(parkingId).get();
     }
 
@@ -79,7 +83,7 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-    void deleteEmployee(Integer employeeId) {
+    void deleteEmployee(Long employeeId) {
         employeeRepository.deleteById(employeeId);
     }
 }

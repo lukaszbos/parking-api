@@ -1,5 +1,6 @@
 package com.lukasz.client;
 
+import com.lukasz.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,15 +37,20 @@ public class ClientService {
         return clientMapper.toDTO(addedClient);
     }
 
-    void updateClient(Client client, UUID clientId) {
-        clientRepository.save(client);
+    public ClientDTO updateClient(ClientDTO clientDTO, UUID clientId) {
+        Client client = clientMapper.toModel(clientDTO);
+        client.setClientId(clientId);
+        Client addedClient = clientRepository.save(client);
+        return clientMapper.toDTO(addedClient);
     }
 
     private boolean isThisClientOnRepo(UUID clientId) {
         return clientRepository.existsById(clientId);
     }
 
-    void deleteClient(UUID clientId) {
+    public ClientDTO deleteClient(UUID clientId) {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Couldn't delete - client not found :D :D :D "));
         clientRepository.deleteById(clientId);
+        return clientMapper.toDTO(client);
     }
 }

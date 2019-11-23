@@ -26,12 +26,12 @@ public class BillService {
         this.clientRepository = clientRepository;
     }
 
-    List<Bill> getBills(Integer parkingId, UUID clientId) {
+    List<Bill> getBills(Long parkingId, UUID clientId) {
         return getBillsById(parkingId, clientId);
     }
 
 
-    private List<Bill> getBillsById(Integer parkingId, UUID clientId) {
+    private List<Bill> getBillsById(Long parkingId, UUID clientId) {
         List<Bill> bills = new ArrayList<>();
         if (!isNull(parkingId) && !isNull(clientId))
             billRepository.findByParking_ParkingIdAndClient_ClientId(parkingId, clientId).forEach(bills::add);
@@ -100,7 +100,7 @@ public class BillService {
         return clientRepository.findById(clientId).get();
     }
 */
-    Bill getBillById(Integer billId) {
+    Bill getBillById(Long billId) {
         return billRepository.findById(billId).get();
     }
 
@@ -109,7 +109,7 @@ public class BillService {
         billRepository.save(bill);
     }
 
-    void deleteBill(Integer billId) {
+    void deleteBill(Long billId) {
         billRepository.deleteById(billId);
     }
 }

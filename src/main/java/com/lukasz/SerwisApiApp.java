@@ -39,14 +39,14 @@ public class SerwisApiApp {
 
     @Bean
     ApplicationRunner applicationRunner(ParkingRepository parkingRepository, ClientRepository clientRepository, EmployeeRepository employeeRepository) {
-        Parking parking = new Parking(1, "parking");
+        Parking parking = new Parking((long) 1, "parking");
         return args -> {
             parkingRepository.save(parking);
             //String uuidValue = "c237bec1-19ef-4858-a98e-521cf0aad4c0";
             //UUID uuid = UUID.fromString(uuidValue);
             //clientRepository.save(new Client(uuid, "Jan", "Gora"));
             //clientRepository.save(new Client( "Zbigniew", "Jankowski"));
-            employeeRepository.save(new Employee(1, "Henryk", "Topor", "parkingowy", parking));
+            employeeRepository.save(new Employee((long) 1, "Henryk", "Topor", "parkingowy", parking));
         };
 
 

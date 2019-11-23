@@ -7,16 +7,17 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "PARKING")
 public class Parking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer parkingId;
+    private Long parkingId;
     private String name;
 
-    public Parking(int parkingId, String name) {
+    public Parking(String name) {
+        this.name = name;
     }
 }

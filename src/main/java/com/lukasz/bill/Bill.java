@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class Bill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Integer billId;
+    private Long billId;
     private Integer numberOfHours;
     private BigDecimal cost;
 

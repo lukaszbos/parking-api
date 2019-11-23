@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.UUID;
 
-public interface BillRepository extends JpaRepository<Bill, Integer> {
-    List<Bill> findByParking_ParkingId(Integer parkingId);
+public interface BillRepository extends JpaRepository<Bill, Long> {
+    List<Bill> findByParking_ParkingId(Long parkingId);
     List<Bill> findByClient_ClientId(UUID clientId);
-    List<Bill> findByParking_ParkingIdAndClient_ClientId(Integer parkingId, UUID clientId);
+    List<Bill> findByParking_ParkingIdAndClient_ClientId(Long parkingId, UUID clientId);
 }

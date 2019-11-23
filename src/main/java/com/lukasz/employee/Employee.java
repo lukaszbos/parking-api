@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Integer employeeId;
+    private Long employeeId;
     private String name;
     private String surname;
     private String position;
@@ -24,7 +24,10 @@ public class Employee {
     @ManyToOne
     private Parking parking;
 
-    public Employee(int employeeId, String name, String surname, String position, Parking parking) {
-
+    public Employee(String name, String surname, String position, Parking parking){
+        this.name = name;
+        this.surname = surname;
+        this.position = position;
+        this.parking = parking;
     }
 }

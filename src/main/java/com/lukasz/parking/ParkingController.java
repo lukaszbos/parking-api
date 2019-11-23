@@ -2,6 +2,8 @@ package com.lukasz.parking;
 
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,22 +26,26 @@ public class ParkingController {
     }
 
     @GetMapping(value = "/{parkingId}")
-    public Parking getParking(@PathVariable Integer parkingId) {
-        return parkingService.getParking(parkingId);
+    public ResponseEntity<ParkingDTO> getParking(@PathVariable Long parkingId) {
+        ParkingDTO parkingDTO = parkingService.getParking(parkingId);
+        return new ResponseEntity<>(parkingDTO, HttpStatus.OK);
     }
 
     @PostMapping()
-    public void addParking(@RequestBody Parking parking) {
-        parkingService.addParking(parking);
+    public ResponseEntity<ParkingDTO> addParking(@RequestBody ParkingDTO parkingDTO) {
+        ParkingDTO addedParkingDTO = parkingService.addParking(parkingDTO);
+        return new ResponseEntity<>(addedParkingDTO, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{parkingId}")
-    public void updateParking(@RequestBody Parking parking, @PathVariable Integer parkingId) {
-        parkingService.updateParking(parking, parkingId);
+    public ResponseEntity <ParkingDTO> updateParking(@RequestBody ParkingDTO parkingDTO, @PathVariable Long parkingId) {
+        ParkingDTO updatedParkingDTO = parkingService.updateParking(parkingDTO, parkingId);
+        return new ResponseEntity<>(updatedParkingDTO, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{parkingId}")
-    public void deleteParking(@PathVariable Integer parkingId) {
+    public ResponseEntity <ParkingDTO> deleteParking(@PathVariable Long parkingId) {
         parkingService.deleteParking(parkingId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

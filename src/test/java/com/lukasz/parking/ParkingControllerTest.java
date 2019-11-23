@@ -44,7 +44,7 @@ class ParkingControllerTest {
 
     @Test
     void getParkingtestdsa() throws Exception {
-        Parking parking = new Parking(1, "parking");
+        Parking parking = new Parking((long) 1, "parking");
         List<Parking> parkings = new ArrayList<>();
         parkings.add(parking);
         //http://localhost:8080
