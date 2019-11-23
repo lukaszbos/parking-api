@@ -19,7 +19,6 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     @GetMapping()
     public List<Client> getAllClients() {
         return clientService.getAllClients();

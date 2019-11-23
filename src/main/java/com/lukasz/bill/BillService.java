@@ -2,6 +2,7 @@ package com.lukasz.bill;
 
 import com.lukasz.client.Client;
 import com.lukasz.client.ClientRepository;
+import com.lukasz.exception.NotFoundException;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,17 @@ import static java.util.Objects.isNull;
 
 @Service
 public class BillService {
-    private ParkingRepository parkingRepository;
-    private BillRepository billRepository;
-    private ClientRepository clientRepository;
+    private final ParkingRepository parkingRepository;
+    private final BillRepository billRepository;
+    private final ClientRepository clientRepository;
+    private final BillMapper billMapper;
 
     @Autowired
-    public BillService(ParkingRepository parkingRepository, BillRepository billRepository, ClientRepository clientRepository) {
+    public BillService(ParkingRepository parkingRepository, BillRepository billRepository, ClientRepository clientRepository, BillMapper billMapper) {
         this.parkingRepository = parkingRepository;
         this.billRepository = billRepository;
         this.clientRepository = clientRepository;
+        this.billMapper = billMapper;
     }
 
     List<Bill> getBills(Long parkingId, UUID clientId) {
@@ -50,11 +53,31 @@ public class BillService {
         return bills;
     }
 
-    void addBill(Bill bill) {
-        //assembleTheBill(bill);
-        billRepository.save(bill);
+    BillDTO getBillById(Long billId) {
+        Bill bill = billRepository.findById(billId).orElseThrow(() -> new NotFoundException("Bill not Found :D :D"));
+        return billMapper.toDTO(bill);
     }
-/*
+
+    BillDTO addBill(BillDTO billDTO) {
+        Bill bill = billMapper.toModel(billDTO);
+        bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
+        bill.setClient(getClientById(billDTO.getClient().getClientId()));
+        Bill addedBill = billRepository.save(bill);
+        return billMapper.toDTO(addedBill);
+    }
+
+    private Parking getParkingById(Long parkingId) {
+        return parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
+    }
+
+    private Client getClientById(UUID clientId){
+        return clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Client not found - in bill"));
+
+    }
+
+
+
+    /*
     private void assembleTheBill(Bill bill) {
         Parking parkingOnBill = assembleParking(bill);
         bill.setParking(parkingOnBill);
@@ -100,16 +123,20 @@ public class BillService {
         return clientRepository.findById(clientId).get();
     }
 */
-    Bill getBillById(Long billId) {
-        return billRepository.findById(billId).get();
-    }
 
-    void updateBill(Bill bill) {
+    BillDTO updateBill(BillDTO billDTO, Long billId) {
         //assembleTheBill(bill);
-        billRepository.save(bill);
+        Bill bill = billMapper.toModel(billDTO);
+        bill.setBillId(billId);
+        bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
+        bill.setClient(getClientById(billDTO.getClient().getClientId()));
+        Bill addedBill = billRepository.save(bill);
+        return billMapper.toDTO(addedBill);
     }
 
-    void deleteBill(Long billId) {
+    BillDTO deleteBill(Long billId) {
+        Bill bill = billRepository.findById(billId).orElseThrow(() -> new NotFoundException("Bill not Found :D :D"));
         billRepository.deleteById(billId);
+        return billMapper.toDTO(bill);
     }
 }

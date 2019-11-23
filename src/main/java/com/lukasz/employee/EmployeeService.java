@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -22,7 +25,8 @@ public class EmployeeService {
         this.employeeMapper = employeeMapper;
     }
 
-    List<Employee> getEmployee(Long parkingId) {
+    //TODO tutaj poprawić te listy albo je USUNAC
+    List<EmployeeDTO> getEmployee(Long parkingId) {
         if (isIdSent(parkingId)) {
             return getEmployeesWorkingOnParking(parkingId);
         } else
@@ -33,16 +37,24 @@ public class EmployeeService {
         return parkingId != null;
     }
 
-    private List<Employee> getEmployeesWorkingOnParking(Long parkingId) {
+    private List<EmployeeDTO> getEmployeesWorkingOnParking(Long parkingId) {
+
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findByParking_ParkingId(parkingId).forEach(employees::add);
-        return employees;
+
+        return employees
+                .stream()
+                .map(employeeMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-    private List<Employee> getAllEmployees() {
+    private List<EmployeeDTO> getAllEmployees() {
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findAll().forEach(employees::add);
-        return employees;
+        return employees
+                .stream()
+                .map(employeeMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     EmployeeDTO getEmployeeById(Long employeeId) {
@@ -50,40 +62,28 @@ public class EmployeeService {
         return employeeMapper.toDTO(employee);
     }
 
-    void addEmployee(Employee employee) {
-        assembleTheEmployee(employee);
-        employeeRepository.save(employee);
-    }
-
-    private void assembleTheEmployee(Employee employee) {
-        Parking parkingOfEmployee = assembleParking(employee);
-        employee.setParking(parkingOfEmployee);
-    }
-
-    private Parking assembleParking(Employee employee) {
-        Long parkingIdOfEmployee = employee.getParking().getParkingId();
-        String parkingNameOfEmployee = employee.getParking().getName();
-
-        if (isThisParkingInMyRepo(parkingIdOfEmployee))
-            return getParkingById(parkingIdOfEmployee);
-        else
-            return new Parking(parkingIdOfEmployee, parkingNameOfEmployee);
-    }
-
-    private boolean isThisParkingInMyRepo(Long parkingIdFromEmployee) {
-        return parkingRepository.existsById(parkingIdFromEmployee);
+    EmployeeDTO addEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = employeeMapper.toModel(employeeDTO);
+        employee.setParking(getParkingById(employeeDTO.getParking().getParkingId()));
+        Employee addedEmployee = employeeRepository.save(employee);
+        return employeeMapper.toDTO(addedEmployee);
     }
 
     private Parking getParkingById(Long parkingId) {
-        return parkingRepository.findById(parkingId).get();
+        return parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
     }
 
-    void updateEmployee(Employee employee) {
-        assembleTheEmployee(employee);
-        employeeRepository.save(employee);
+    EmployeeDTO updateEmployee(EmployeeDTO employeeDTO, Long employeeId) {
+        Employee employee = employeeMapper.toModel(employeeDTO);
+        employee.setEmployeeId(employeeId);
+        employee.setParking(getParkingById(employeeDTO.getParking().getParkingId()));
+        Employee addedEmployee = employeeRepository.save(employee);
+        return employeeMapper.toDTO(addedEmployee);
     }
 
-    void deleteEmployee(Long employeeId) {
+    EmployeeDTO deleteEmployee(Long employeeId) {
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new NotFoundException("Employee not found"));
         employeeRepository.deleteById(employeeId);
+        return employeeMapper.toDTO(employee);
     }
 }

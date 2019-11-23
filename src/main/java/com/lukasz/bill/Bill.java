@@ -29,4 +29,11 @@ public class Bill {
     @ManyToOne
     private Client client;
 
+    public Bill(Integer numberOfHours, BigDecimal cost, Parking parking, Client client) {
+        this.numberOfHours = numberOfHours;
+        this.cost = cost;
+        this.parking = parking;
+        this.client = client;
+    }
+
 }
