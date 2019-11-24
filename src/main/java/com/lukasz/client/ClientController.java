@@ -32,7 +32,7 @@ public class ClientController {
     }
 
     @PostMapping()
-    public ResponseEntity<ClientDTO> addClient(@RequestBody ClientDTO clientDTO) {
+    public ResponseEntity<ClientDTO> addClient(@RequestBody ClientDTO clientDTO, @PathVariable String email) {
         ClientDTO addedClientDTO = clientService.addClient(clientDTO);
         return new ResponseEntity<>(addedClientDTO, HttpStatus.CREATED);
     }
