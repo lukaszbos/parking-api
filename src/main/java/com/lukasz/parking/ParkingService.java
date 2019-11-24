@@ -1,12 +1,12 @@
 package com.lukasz.parking;
 
 import com.lukasz.exception.NotFoundException;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 class ParkingService {
@@ -20,11 +20,14 @@ class ParkingService {
         this.parkingMapper = parkingMapper;
     }
 
-    List<Parking> getParkings(){
+    List<ParkingDTO> getParkings(){
         List<Parking> parkings = new ArrayList<>();
         parkingRepository.findAll()
                 .forEach(parkings::add);
-        return parkings;
+        return parkings
+                .stream()
+                .map(parking -> parkingMapper.toDTO(parking))
+                .collect(Collectors.toList());
     }
 
     ParkingDTO getParking(Long parkingId){

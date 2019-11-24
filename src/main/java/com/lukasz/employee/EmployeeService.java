@@ -25,7 +25,6 @@ public class EmployeeService {
         this.employeeMapper = employeeMapper;
     }
 
-    //TODO tutaj poprawić te listy albo je USUNAC
     List<EmployeeDTO> getEmployee(Long parkingId) {
         if (isIdSent(parkingId)) {
             return getEmployeesWorkingOnParking(parkingId);
@@ -40,11 +39,11 @@ public class EmployeeService {
     private List<EmployeeDTO> getEmployeesWorkingOnParking(Long parkingId) {
 
         List<Employee> employees = new ArrayList<>();
-        employeeRepository.findByParking_ParkingId(parkingId).forEach(employees::add);
+        employeeRepository.findByParking_ParkingId(parkingId).forEach(employee -> employees.add(employee));
 
         return employees
                 .stream()
-                .map(employeeMapper::toDTO)
+                .map(employee -> employeeMapper.toDTO(employee))
                 .collect(Collectors.toList());
     }
 

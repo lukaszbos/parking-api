@@ -22,7 +22,7 @@ public class ChargeCalculator {
         if (periodOnParkingInHoursCeil <= 1) {
             firstHourCharge = tariff.getCostOfFirstHour().multiply(BigDecimal.valueOf(periodOnParkingInHoursCeil));
             charge = firstHourCharge;
-        }else {
+        } else {
             firstHourCharge = tariff.getCostOfFirstHour();
             nextHoursCharge = tariff.getCostOfNextHour().multiply(BigDecimal.valueOf(periodOnParkingInHoursCeil - 1));
             charge = firstHourCharge.add(nextHoursCharge);

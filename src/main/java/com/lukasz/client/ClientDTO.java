@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClientDTO {
-    private UUID  clientId;
+    private UUID clientId;
     private String name;
     private String surname;
     private String email;

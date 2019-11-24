@@ -14,23 +14,17 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService){
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping
-    /*public List<Employee> getEmployee(@RequestParam(name = "parkingId") Long parkingId) {
-        return employeeService.getEmployee(parkingId);
-    }*/
     public ResponseEntity<List<EmployeeDTO>> getEmployees(@RequestParam(name = "parkingId") Long parkingId) {
-        List<EmployeeDTO> employees = employeeService.getEmployee(parkingId);
-        return new ResponseEntity<>(employees, HttpStatus.OK);
+        List<EmployeeDTO> employeeDTOS = employeeService.getEmployee(parkingId);
+        return new ResponseEntity<>(employeeDTOS, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{employeeId}")
-    /*public Employee getEmployeeById(@PathVariable Long employeeId) {
-        return employeeService.getEmployeeById(employeeId);
-    }*/
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long employeeId) {
         EmployeeDTO employeeDTO = employeeService.getEmployeeById(employeeId);
         return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
@@ -38,9 +32,6 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    /*public void addEmployee(@RequestBody Employee employee) {
-        employeeService.addEmployee(employee);
-    }*/
     public ResponseEntity<EmployeeDTO> addEmployee(@RequestBody EmployeeDTO employeeDTOo) {
         EmployeeDTO employeeDTO = employeeService.addEmployee(employeeDTOo);
         return new ResponseEntity<>(employeeDTO, HttpStatus.CREATED);

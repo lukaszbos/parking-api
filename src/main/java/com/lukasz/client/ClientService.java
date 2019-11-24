@@ -1,5 +1,6 @@
 package com.lukasz.client;
 
+import com.lukasz.exception.ConflictException;
 import com.lukasz.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
@@ -20,10 +22,13 @@ public class ClientService {
         this.clientMapper = clientMapper;
     }
 
-    List<Client> getAllClients() {
+    List<ClientDTO> getAllClients() {
         List<Client> clients = new ArrayList<>();
         clientRepository.findAll().forEach(clients::add);
-        return clients;
+        return clients
+                .stream()
+                .map(client -> clientMapper.toDTO(client))
+                .collect(Collectors.toList());
     }
 
     public ClientDTO getClientById(UUID clientId) {
@@ -31,10 +36,17 @@ public class ClientService {
         return clientMapper.toDTO(client);
     }
 
-    public ClientDTO addClient(ClientDTO clientDTO) {
+    ClientDTO addClient(ClientDTO clientDTO) {
+        checkIfClientExist(clientDTO);
         Client client = clientMapper.toModel(clientDTO);
         Client addedClient = clientRepository.save(client);
         return clientMapper.toDTO(addedClient);
+    }
+
+    private void checkIfClientExist(ClientDTO clientDTO) {
+        if (clientRepository.findByEmail(clientDTO.getEmail()) != null) {
+            throw new ConflictException("Email already in use");
+        }
     }
 
     public ClientDTO updateClient(ClientDTO clientDTO, UUID clientId) {
@@ -53,4 +65,5 @@ public class ClientService {
         clientRepository.deleteById(clientId);
         return clientMapper.toDTO(client);
     }
+
 }

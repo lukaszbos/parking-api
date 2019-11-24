@@ -15,13 +15,14 @@ public class BillController {
     private BillService billService;
 
     @Autowired
-    public BillController(BillService billService){
+    public BillController(BillService billService) {
         this.billService = billService;
     }
 
     @GetMapping()
-    public List<Bill> getBill(@RequestParam(required = false) Long parkingId, @RequestParam(required = false) UUID clientId) {
-        return billService.getBills(parkingId, clientId);
+    ResponseEntity<List<BillDTO>> getBill(@RequestParam(required = false) Long parkingId, @RequestParam(required = false) UUID clientId) {
+        List<BillDTO> billDTOS = billService.getBills(parkingId, clientId);
+        return new ResponseEntity<>(billDTOS, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{billId}")

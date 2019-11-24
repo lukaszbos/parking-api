@@ -24,7 +24,7 @@ public class Employee {
     @ManyToOne
     private Parking parking;
 
-    public Employee(String name, String surname, String position, Parking parking){
+    public Employee(String name, String surname, String position, Parking parking) {
         this.name = name;
         this.surname = surname;
         this.position = position;

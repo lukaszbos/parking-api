@@ -21,8 +21,9 @@ public class ParkingController {
     }
 
     @GetMapping()
-    public List<Parking> getAllParkings() {
-        return parkingService.getParkings();
+    public ResponseEntity<List<ParkingDTO>> getAllParkings() {
+        List<ParkingDTO> parkingDTOS = parkingService.getParkings();
+        return new ResponseEntity<>(parkingDTOS, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{parkingId}")
@@ -38,13 +39,13 @@ public class ParkingController {
     }
 
     @PutMapping(value = "/{parkingId}")
-    public ResponseEntity <ParkingDTO> updateParking(@RequestBody ParkingDTO parkingDTO, @PathVariable Long parkingId) {
+    public ResponseEntity<ParkingDTO> updateParking(@RequestBody ParkingDTO parkingDTO, @PathVariable Long parkingId) {
         ParkingDTO updatedParkingDTO = parkingService.updateParking(parkingDTO, parkingId);
         return new ResponseEntity<>(updatedParkingDTO, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{parkingId}")
-    public ResponseEntity <ParkingDTO> deleteParking(@PathVariable Long parkingId) {
+    public ResponseEntity<ParkingDTO> deleteParking(@PathVariable Long parkingId) {
         parkingService.deleteParking(parkingId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
@@ -29,12 +30,7 @@ public class BillService {
         this.billMapper = billMapper;
     }
 
-    List<Bill> getBills(Long parkingId, UUID clientId) {
-        return getBillsById(parkingId, clientId);
-    }
-
-
-    private List<Bill> getBillsById(Long parkingId, UUID clientId) {
+    List<BillDTO> getBills(Long parkingId, UUID clientId)  {
         List<Bill> bills = new ArrayList<>();
         if (!isNull(parkingId) && !isNull(clientId))
             billRepository.findByParking_ParkingIdAndClient_ClientId(parkingId, clientId).forEach(bills::add);
@@ -44,13 +40,19 @@ public class BillService {
             billRepository.findByClient_ClientId(clientId).forEach(bills::add);
         else
             getAllBills();
-        return bills;
+        return bills
+                .stream()
+                .map(bill -> billMapper.toDTO(bill))
+                .collect(Collectors.toList());
     }
 
-    private List<Bill> getAllBills() {
+    private List<BillDTO> getAllBills() {
         List<Bill> bills = new ArrayList<>();
         billRepository.findAll().forEach(bills::add);
-        return bills;
+        return bills
+                .stream()
+                .map(bill -> billMapper.toDTO(bill))
+                .collect(Collectors.toList());
     }
 
     BillDTO getBillById(Long billId) {
@@ -70,62 +72,12 @@ public class BillService {
         return parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
     }
 
-    private Client getClientById(UUID clientId){
+    private Client getClientById(UUID clientId) {
         return clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Client not found - in bill"));
 
     }
 
-
-
-    /*
-    private void assembleTheBill(Bill bill) {
-        Parking parkingOnBill = assembleParking(bill);
-        bill.setParking(parkingOnBill);
-
-        Client clientOnBill = assembleClient(bill);
-        bill.setClient(clientOnBill);
-    }
-
-    private Parking assembleParking(Bill bill) {
-        Integer parkingIdFromBill = bill.getParking().getParkingId();
-        String parkingNameFromBill = bill.getParking().getName();
-
-        if (isThisParkingInMyRepo(parkingIdFromBill))
-            return getParkingById(parkingIdFromBill);
-        else
-            return new Parking(parkingIdFromBill, parkingNameFromBill);
-    }
-
-    private boolean isThisParkingInMyRepo(Integer parkingIdFromBill) {
-        return parkingRepository.existsById(parkingIdFromBill);
-    }
-
-    private Parking getParkingById(Integer parkingId) {
-        return parkingRepository.findById(parkingId).get();
-    }
-
-    private Client assembleClient(Bill bill) {
-        Integer clientIdFromBill = bill.getClient().getClientId();
-        String clientNameFromBill = bill.getClient().getName();
-        String clientSurnameFromBill = bill.getClient().getSurname();
-
-        if (isThisClientInMyRepo(clientIdFromBill))
-            return getClientById(clientIdFromBill);
-        else
-            return new Client(clientIdFromBill, clientNameFromBill, clientSurnameFromBill);
-    }
-
-    private boolean isThisClientInMyRepo(Integer clientIdFromBill) {
-        return clientRepository.existsById(clientIdFromBill);
-    }
-
-    private Client getClientById(Integer clientId) {
-        return clientRepository.findById(clientId).get();
-    }
-*/
-
     BillDTO updateBill(BillDTO billDTO, Long billId) {
-        //assembleTheBill(bill);
         Bill bill = billMapper.toModel(billDTO);
         bill.setBillId(billId);
         bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
