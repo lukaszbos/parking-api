@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParkingMapper {
 
-    Parking toModel(ParkingDTO parkingDTO) {
+    Parking toModel(ParkingDto parkingDTO) {
         return new Parking(parkingDTO.getName());
     }
 
-    ParkingDTO toDTO(Parking parking) {
-        return new ParkingDTO(parking.getParkingId(), parking.getName());
+    ParkingDto toDTO(Parking parking) {
+        return new ParkingDto(parking.getParkingId(), parking.getName());
     }
 }

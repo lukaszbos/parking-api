@@ -28,32 +28,32 @@ public class BillController {
     }
 
     @GetMapping()
-    ResponseEntity<List<BillDTO>> getBill(@RequestParam(required = false) Long parkingId, @RequestParam(required = false) UUID clientId) {
-        List<BillDTO> billDTOS = billService.getBills(parkingId, clientId);
-        return new ResponseEntity<>(billDTOS, HttpStatus.OK);
+    ResponseEntity<List<BillDto>> getBill(@RequestParam(required = false) Long parkingId, @RequestParam(required = false) UUID clientId) {
+        List<BillDto> billDtos = billService.getBills(parkingId, clientId);
+        return new ResponseEntity<>(billDtos, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{billId}")
-    ResponseEntity<BillDTO> getBillById(@PathVariable Long billId) {
-        BillDTO billDTO = billService.getBillById(billId);
-        return new ResponseEntity<>(billDTO, HttpStatus.OK);
+    ResponseEntity<BillDto> getBillById(@PathVariable Long billId) {
+        BillDto billDto = billService.getBillById(billId);
+        return new ResponseEntity<>(billDto, HttpStatus.OK);
     }
 
     @PostMapping()
-    ResponseEntity<BillDTO> addBill(@RequestBody BillDTO billDTO) {
-        BillDTO billDTO1 = billService.addBill(billDTO);
-        return new ResponseEntity<>(billDTO1, HttpStatus.CREATED);
+    ResponseEntity<BillDto> addBill(@RequestBody BillDto billDto) {
+        BillDto responseDTO = billService.addBill(billDto);
+        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{billId}")
-    ResponseEntity<BillDTO> updateBill(@RequestBody BillDTO billDTO, @PathVariable Long billId) {
-        BillDTO billDTO1 = billService.updateBill(billDTO, billId);
-        return new ResponseEntity<>(billDTO1, HttpStatus.OK);
+    ResponseEntity<BillDto> updateBill(@RequestBody BillDto billDto, @PathVariable Long billId) {
+        BillDto responseDto = billService.updateBill(billDto, billId);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{billId}")
-    ResponseEntity<BillDTO> deleteBill(@PathVariable Long billId) {
-        BillDTO billDTO = billService.deleteBill(billId);
+    ResponseEntity<BillDto> deleteBill(@PathVariable Long billId) {
+        BillDto billDto = billService.deleteBill(billId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

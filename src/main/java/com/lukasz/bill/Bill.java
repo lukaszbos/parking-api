@@ -19,7 +19,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "BILL")
 public class Bill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

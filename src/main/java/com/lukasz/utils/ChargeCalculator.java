@@ -3,11 +3,16 @@ package com.lukasz.utils;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class ChargeCalculator {
     private static final int minutesInHour = 60;
     private static final int secondsInMinute = 60;
     private static final int millisInSecond = 1000;
+
+    protected static final Logger log = Logger.getLogger(ChargeCalculator.class.getName());
 
     public static BigDecimal calculateCharge(LocalDateTime parkingDate, Tariff tariff) {
         BigDecimal charge;
@@ -15,10 +20,9 @@ public class ChargeCalculator {
         BigDecimal nextHoursCharge;
 
         long periodOnParkingInMillis = calculateTimeSpent(parkingDate);
-        System.out.println("time spend przed zaokrogleniem " + periodOnParkingInMillis);
+        log.log(Level.INFO, "time spend przed zaokrogleniem ", periodOnParkingInMillis);
         int periodOnParkingInHoursCeil = formatFromMillisToHoursCeil(periodOnParkingInMillis);
-        System.out.println("time spend po zaokrogleniu " + periodOnParkingInHoursCeil);
-
+        log.log(Level.INFO, "time spend po zaokrogleniu ", periodOnParkingInHoursCeil);
         if (periodOnParkingInHoursCeil <= 1) {
             firstHourCharge = tariff.getCostOfFirstHour().multiply(BigDecimal.valueOf(periodOnParkingInHoursCeil));
             charge = firstHourCharge;

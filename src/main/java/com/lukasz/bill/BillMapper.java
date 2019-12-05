@@ -4,11 +4,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BillMapper {
-    Bill toModel(BillDTO billDTO) {
+    Bill toModel(BillDto billDTO) {
         return new Bill(billDTO.getNumberOfHours(), billDTO.getCost(), billDTO.getParking(), billDTO.getClient());
     }
 
-    BillDTO toDTO(Bill bill) {
-        return new BillDTO(bill.getBillId(), bill.getNumberOfHours(), bill.getCost(), bill.getParking(), bill.getClient());
+    BillDto toDto(Bill bill) {
+        return new BillDto(bill.getBillId(), bill.getNumberOfHours(), bill.getCost(), bill.getParking(), bill.getClient());
     }
 }

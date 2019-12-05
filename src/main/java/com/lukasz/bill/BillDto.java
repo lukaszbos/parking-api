@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BillDTO {
+public class BillDto {
     private Long billId;
     private Integer numberOfHours;
     private BigDecimal cost;

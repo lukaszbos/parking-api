@@ -1,17 +1,16 @@
 package com.lukasz.client;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ClientMapper {
 
-    public Client toModel(ClientDTO clientDTO) {
-        return new Client(clientDTO.getName(), clientDTO.getSurname(), clientDTO.getEmail());
+    public Client toModel(ClientDto clientDto) {
+        return new Client(clientDto.getName(), clientDto.getSurname(), clientDto.getEmail());
     }
 
-    public ClientDTO toDTO(Client client) {
-        return new ClientDTO(client.getClientId(), client.getName(), client.getSurname(), client.getEmail());
+    public ClientDto toDto(Client client) {
+        return new ClientDto(client.getClientId(), client.getName(), client.getSurname(), client.getEmail());
     }
 
 }

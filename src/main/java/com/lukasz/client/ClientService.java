@@ -22,48 +22,48 @@ public class ClientService {
         this.clientMapper = clientMapper;
     }
 
-    List<ClientDTO> getAllClients() {
+    List<ClientDto> getAllClients() {
         List<Client> clients = new ArrayList<>();
         clientRepository.findAll().forEach(clients::add);
         return clients
                 .stream()
-                .map(client -> clientMapper.toDTO(client))
+                .map(client -> clientMapper.toDto(client))
                 .collect(Collectors.toList());
     }
 
-    public ClientDTO getClientById(UUID clientId) {
+    public ClientDto getClientById(UUID clientId) {
         Client client = clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Client not found :D :D :D "));
-        return clientMapper.toDTO(client);
+        return clientMapper.toDto(client);
     }
 
-    ClientDTO addClient(ClientDTO clientDTO) {
-        checkIfClientExist(clientDTO);
-        Client client = clientMapper.toModel(clientDTO);
+    ClientDto addClient(ClientDto clientDto) {
+        checkIfEmailExist(clientDto);
+        Client client = clientMapper.toModel(clientDto);
         Client addedClient = clientRepository.save(client);
-        return clientMapper.toDTO(addedClient);
+        return clientMapper.toDto(addedClient);
     }
 
-    private void checkIfClientExist(ClientDTO clientDTO) {
-        if (clientRepository.findByEmail(clientDTO.getEmail()) != null) {
+    private void checkIfEmailExist(ClientDto clientDto) {
+        if (clientRepository.findByEmail(clientDto.getEmail()) != null) {
             throw new ConflictException("Email already in use");
         }
     }
 
-    public ClientDTO updateClient(ClientDTO clientDTO, UUID clientId) {
-        Client client = clientMapper.toModel(clientDTO);
+    public ClientDto updateClient(ClientDto clientDto, UUID clientId) {
+        Client client = clientMapper.toModel(clientDto);
         client.setClientId(clientId);
         Client addedClient = clientRepository.save(client);
-        return clientMapper.toDTO(addedClient);
+        return clientMapper.toDto(addedClient);
     }
 
-    private boolean isThisClientOnRepo(UUID clientId) {
+    private boolean clientExists(UUID clientId) {
         return clientRepository.existsById(clientId);
     }
 
-    public ClientDTO deleteClient(UUID clientId) {
+    public ClientDto deleteClient(UUID clientId) {
         Client client = clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Couldn't delete - client not found :D :D :D "));
         clientRepository.deleteById(clientId);
-        return clientMapper.toDTO(client);
+        return clientMapper.toDto(client);
     }
 
 }

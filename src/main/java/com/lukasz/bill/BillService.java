@@ -30,7 +30,7 @@ public class BillService {
         this.billMapper = billMapper;
     }
 
-    List<BillDTO> getBills(Long parkingId, UUID clientId)  {
+    List<BillDto> getBills(Long parkingId, UUID clientId)  {
         List<Bill> bills = new ArrayList<>();
         if (!isNull(parkingId) && !isNull(clientId))
             billRepository.findByParking_ParkingIdAndClient_ClientId(parkingId, clientId).forEach(bills::add);
@@ -42,30 +42,30 @@ public class BillService {
             getAllBills();
         return bills
                 .stream()
-                .map(bill -> billMapper.toDTO(bill))
+                .map(bill -> billMapper.toDto(bill))
                 .collect(Collectors.toList());
     }
 
-    private List<BillDTO> getAllBills() {
+    private List<BillDto> getAllBills() {
         List<Bill> bills = new ArrayList<>();
         billRepository.findAll().forEach(bills::add);
         return bills
                 .stream()
-                .map(bill -> billMapper.toDTO(bill))
+                .map(bill -> billMapper.toDto(bill))
                 .collect(Collectors.toList());
     }
 
-    BillDTO getBillById(Long billId) {
+    BillDto getBillById(Long billId) {
         Bill bill = billRepository.findById(billId).orElseThrow(() -> new NotFoundException("Bill not Found :D :D"));
-        return billMapper.toDTO(bill);
+        return billMapper.toDto(bill);
     }
 
-    BillDTO addBill(BillDTO billDTO) {
+    BillDto addBill(BillDto billDTO) {
         Bill bill = billMapper.toModel(billDTO);
         bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
         bill.setClient(getClientById(billDTO.getClient().getClientId()));
         Bill addedBill = billRepository.save(bill);
-        return billMapper.toDTO(addedBill);
+        return billMapper.toDto(addedBill);
     }
 
     private Parking getParkingById(Long parkingId) {
@@ -77,18 +77,18 @@ public class BillService {
 
     }
 
-    BillDTO updateBill(BillDTO billDTO, Long billId) {
+    BillDto updateBill(BillDto billDTO, Long billId) {
         Bill bill = billMapper.toModel(billDTO);
         bill.setBillId(billId);
         bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
         bill.setClient(getClientById(billDTO.getClient().getClientId()));
         Bill addedBill = billRepository.save(bill);
-        return billMapper.toDTO(addedBill);
+        return billMapper.toDto(addedBill);
     }
 
-    BillDTO deleteBill(Long billId) {
+    BillDto deleteBill(Long billId) {
         Bill bill = billRepository.findById(billId).orElseThrow(() -> new NotFoundException("Bill not Found :D :D"));
         billRepository.deleteById(billId);
-        return billMapper.toDTO(bill);
+        return billMapper.toDto(bill);
     }
 }

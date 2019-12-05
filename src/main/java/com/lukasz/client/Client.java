@@ -18,7 +18,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CLIENT")
 public class Client {
     @Id
     //@org.hibernate.annotations.Type(type="org.hibernate.type.PostgresUUIDType")

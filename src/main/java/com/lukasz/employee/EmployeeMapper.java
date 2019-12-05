@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmployeeMapper {
 
-    public Employee toModel(EmployeeDTO employeeDTO){
+    public Employee toModel(EmployeeDto employeeDTO){
         return new Employee(employeeDTO.getName(),employeeDTO.getSurname(),
                             employeeDTO.getPosition(), employeeDTO.getParking());
     }
 
-    public EmployeeDTO toDTO(Employee employee){
-        return new EmployeeDTO(employee.getEmployeeId(), employee.getName(), employee.getSurname(),
+    public EmployeeDto toDto(Employee employee){
+        return new EmployeeDto(employee.getEmployeeId(), employee.getName(), employee.getSurname(),
                                employee.getPosition(), employee.getParking());
     }
 

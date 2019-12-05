@@ -27,32 +27,32 @@ public class ClientController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<ClientDTO>> getAllClients() {
-        List<ClientDTO> clientDTOS = clientService.getAllClients();
-        return new ResponseEntity<>(clientDTOS, HttpStatus.OK);
+    public ResponseEntity<List<ClientDto>> getAllClients() {
+        List<ClientDto> clientDtos = clientService.getAllClients();
+        return new ResponseEntity<>(clientDtos, HttpStatus.OK);
     }
 
     @GetMapping("/{clientId}")
-    public ResponseEntity<ClientDTO> getClientById(@PathVariable UUID clientId) {
-        ClientDTO clientDTO = clientService.getClientById(clientId);
-        return new ResponseEntity<>(clientDTO, HttpStatus.OK);
+    public ResponseEntity<ClientDto> getClientById(@PathVariable UUID clientId) {
+        ClientDto clientDto = clientService.getClientById(clientId);
+        return new ResponseEntity<>(clientDto, HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<ClientDTO> addClient(@RequestBody ClientDTO clientDTO) {
-        ClientDTO addedClientDTO = clientService.addClient(clientDTO);
-        return new ResponseEntity<>(addedClientDTO, HttpStatus.CREATED);
+    public ResponseEntity<ClientDto> addClient(@RequestBody ClientDto clientDto) {
+        ClientDto addedClientDto = clientService.addClient(clientDto);
+        return new ResponseEntity<>(addedClientDto, HttpStatus.CREATED);
     }
 
 
     @PutMapping(value = "/{clientId}")
-    public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO clientDTO, @PathVariable UUID clientId) {
-        ClientDTO updatedClientDTO = clientService.updateClient(clientDTO, clientId);
-        return new ResponseEntity<>(updatedClientDTO, HttpStatus.OK);
+    public ResponseEntity<ClientDto> updateClient(@RequestBody ClientDto clientDto, @PathVariable UUID clientId) {
+        ClientDto updatedClientDto = clientService.updateClient(clientDto, clientId);
+        return new ResponseEntity<>(updatedClientDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{clientId}")
-    public ResponseEntity<ClientDTO> deleteClient(@PathVariable UUID clientId) {
+    public ResponseEntity<ClientDto> deleteClient(@PathVariable UUID clientId) {
         clientService.deleteClient(clientId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

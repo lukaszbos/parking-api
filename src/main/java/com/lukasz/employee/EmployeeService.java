@@ -23,7 +23,7 @@ public class EmployeeService {
         this.employeeMapper = employeeMapper;
     }
 
-    List<EmployeeDTO> getEmployee(Long parkingId) {
+    List<EmployeeDto> getEmployee(Long parkingId) {
         if (isIdSent(parkingId)) {
             return getEmployeesWorkingOnParking(parkingId);
         } else
@@ -34,53 +34,53 @@ public class EmployeeService {
         return parkingId != null;
     }
 
-    private List<EmployeeDTO> getEmployeesWorkingOnParking(Long parkingId) {
+    private List<EmployeeDto> getEmployeesWorkingOnParking(Long parkingId) {
 
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findByParking_ParkingId(parkingId).forEach(employee -> employees.add(employee));
 
         return employees
                 .stream()
-                .map(employee -> employeeMapper.toDTO(employee))
+                .map(employee -> employeeMapper.toDto(employee))
                 .collect(Collectors.toList());
     }
 
-    private List<EmployeeDTO> getAllEmployees() {
+    private List<EmployeeDto> getAllEmployees() {
         List<Employee> employees = new ArrayList<>();
         employeeRepository.findAll().forEach(employees::add);
         return employees
                 .stream()
-                .map(employeeMapper::toDTO)
+                .map(employeeMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    EmployeeDTO getEmployeeById(Long employeeId) {
+    EmployeeDto getEmployeeById(Long employeeId) {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new NotFoundException("Employee not found"));
-        return employeeMapper.toDTO(employee);
+        return employeeMapper.toDto(employee);
     }
 
-    EmployeeDTO addEmployee(EmployeeDTO employeeDTO) {
-        Employee employee = employeeMapper.toModel(employeeDTO);
-        employee.setParking(getParkingById(employeeDTO.getParking().getParkingId()));
+    EmployeeDto addEmployee(EmployeeDto employeeDto) {
+        Employee employee = employeeMapper.toModel(employeeDto);
+        employee.setParking(getParkingById(employeeDto.getParking().getParkingId()));
         Employee addedEmployee = employeeRepository.save(employee);
-        return employeeMapper.toDTO(addedEmployee);
+        return employeeMapper.toDto(addedEmployee);
     }
 
     private Parking getParkingById(Long parkingId) {
         return parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
     }
 
-    EmployeeDTO updateEmployee(EmployeeDTO employeeDTO, Long employeeId) {
+    EmployeeDto updateEmployee(EmployeeDto employeeDTO, Long employeeId) {
         Employee employee = employeeMapper.toModel(employeeDTO);
         employee.setEmployeeId(employeeId);
         employee.setParking(getParkingById(employeeDTO.getParking().getParkingId()));
         Employee addedEmployee = employeeRepository.save(employee);
-        return employeeMapper.toDTO(addedEmployee);
+        return employeeMapper.toDto(addedEmployee);
     }
 
-    EmployeeDTO deleteEmployee(Long employeeId) {
+    EmployeeDto deleteEmployee(Long employeeId) {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new NotFoundException("Employee not found"));
         employeeRepository.deleteById(employeeId);
-        return employeeMapper.toDTO(employee);
+        return employeeMapper.toDto(employee);
     }
 }
