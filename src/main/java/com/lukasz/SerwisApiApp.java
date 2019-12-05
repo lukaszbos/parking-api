@@ -1,27 +1,16 @@
 package com.lukasz;
 //TODO https://medium.com/the-resonant-web/spring-boot-2-0-project-structure-and-best-practices-part-2-7137bdcba7d3
 
-import com.lukasz.client.Client;
 import com.lukasz.client.ClientRepository;
 import com.lukasz.employee.Employee;
 import com.lukasz.employee.EmployeeRepository;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
-import com.lukasz.utils.Tariff;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.UUID;
-
-import static com.lukasz.utils.ChargeCalculator.calculateCharge;
-import static com.lukasz.utils.ChargeCalculator.calculateTimeSpent;
-import static java.lang.Thread.sleep;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.lukasz"})

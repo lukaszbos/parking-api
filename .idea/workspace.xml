@@ -2,8 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e94ccb2a-f13e-484c-a7d6-a6a84204403f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/Bill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/Parking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/Parking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/ParkingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/parking/ParkingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/Bill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/Bill.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/employee/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/employee/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/employee/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/employee/EmployeeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/employee/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/employee/EmployeeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/parking/Parking.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/parking/Parking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/parking/ParkingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/parking/ParkingController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,12 +46,14 @@
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1RvDvmELwpz069rWM1EiyTVSXj0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556981957693" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
@@ -40,7 +62,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -159,7 +181,7 @@
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\admin\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -183,81 +205,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>parking-api</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
