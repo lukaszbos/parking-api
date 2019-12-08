@@ -36,7 +36,7 @@ public class ClientService {
         return clientMapper.toDto(client);
     }
 
-    ClientDto addClient(ClientDto clientDto) {
+    public ClientDto addClient(ClientDto clientDto) {
         checkIfEmailExist(clientDto);
         Client client = clientMapper.toModel(clientDto);
         Client addedClient = clientRepository.save(client);

@@ -27,6 +27,7 @@ public class Client {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
+
     private UUID clientId;
     private String name;
     private String surname;
@@ -37,4 +38,5 @@ public class Client {
         this.surname = surname;
         this.email = email;
     }
+
 }

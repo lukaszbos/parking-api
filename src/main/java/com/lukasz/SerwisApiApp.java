@@ -1,20 +1,31 @@
 package com.lukasz;
 //TODO https://medium.com/the-resonant-web/spring-boot-2-0-project-structure-and-best-practices-part-2-7137bdcba7d3
 
+import com.lukasz.client.Client;
+import com.lukasz.client.ClientDto;
 import com.lukasz.client.ClientRepository;
+import com.lukasz.client.ClientService;
 import com.lukasz.employee.Employee;
 import com.lukasz.employee.EmployeeRepository;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
+import jdk.nashorn.internal.codegen.ClassEmitter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.UUID;
+
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.lukasz"})
 public class SerwisApiApp {
+    @Autowired
+    private ClientService clientService;
+
+
     public static void main(String[] args) throws InterruptedException {
       /*  LocalDateTime parkingData = LocalDateTime.of(2019, 10, 22, 8, 41, 1, 1);
         Tariff tariff = new Tariff(BigDecimal.valueOf(10.29), BigDecimal.valueOf(8.00));
@@ -23,6 +34,8 @@ public class SerwisApiApp {
         System.out.println("Parking date: " + parkingData);
         System.out.println("Cena: " + charge);
        */
+
+
          SpringApplication.run(SerwisApiApp.class, args);
     }
 
@@ -31,10 +44,14 @@ public class SerwisApiApp {
         Parking parking = new Parking((long) 1, "parking");
         return args -> {
             parkingRepository.save(parking);
-            //String uuidValue = "c237bec1-19ef-4858-a98e-521cf0aad4c0";
-            //UUID uuid = UUID.fromString(uuidValue);
-            //clientRepository.save(new Client(uuid, "Jan", "Gora"));
-            //clientRepository.save(new Client( "Zbigniew", "Jankowski"));
+
+            String uuidValue = "8e93ab4a-98f5-4097-8c91-9bd71cb2c688";
+            UUID uuidd = UUID.fromString(uuidValue);
+            Client mockClient = new Client("Jan", "Gora", "janek@gmail.com");
+            mockClient.setClientId(uuidd);
+            ClientDto mockClientDto = new ClientDto(uuidd,"Jan", "Gora", "janek@gmail.com");
+            clientService.updateClient(mockClientDto, uuidd);
+            clientRepository.save(mockClient);
             employeeRepository.save(new Employee((long) 1, "Henryk", "Topor", "parkingowy", parking));
         };
 
@@ -62,6 +79,9 @@ spring.jpa.hibernate.ddl-auto=update
 
 
 
+*/
+
+/*
 
                 <dependency>
             <groupId>com.h2database</groupId>
@@ -70,6 +90,15 @@ spring.jpa.hibernate.ddl-auto=update
             <scope>test</scope>
         </dependency>
 
+# H2
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2
+
+# Datasource
+spring.datasource.url=jdbc:h2:file:~/test
+spring.datasource.username=sa
+spring.datasource.password=
+spring.datasource.driver-class-name=org.h2.Driver
  */
 
 /*
