@@ -2,22 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e94ccb2a-f13e-484c-a7d6-a6a84204403f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillDtoPost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillDtoPut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillMapperPost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillMapperPut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/management/ManagementController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/management/ManagementDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/management/ManagementMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/management/ManagementService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/TicketRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/SerwisApiApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/Bill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/bill/BillService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/client/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/employee/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/TicketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/TicketDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/TicketMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/ticket/VirtualTicketService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lukasz/utils/ChargeCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/SerwisApiApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/Bill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/Bill.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/bill/BillService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/client/ClientService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/employee/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/employee/EmployeeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/lukasz/utils/ChargeCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lukasz/utils/ChargeCalculator.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,12 +73,13 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556981957693" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/demo/demo" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -199,5 +222,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="zwrotki" language="JAVA" />
+        <watch expression="managementDto.client" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

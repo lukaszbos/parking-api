@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,15 +40,29 @@ public class BillController {
         return new ResponseEntity<>(billDto, HttpStatus.OK);
     }
 
+/*
+    @GetMapping(value = "/{clientId}")
+    ResponseEntity<BillDto> getLastBillOfClient(@PathVariable UUID clientId) {
+        BillDto billDto = billService.getLastBillOfClient(clientId);
+        return new ResponseEntity<>(billDto, HttpStatus.OK);
+    }
+*/
     @PostMapping()
-    ResponseEntity<BillDto> addBill(@RequestBody BillDto billDto) {
-        BillDto responseDTO = billService.addBill(billDto);
-        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+    public ResponseEntity<BillDto> addBill(@RequestBody BillDto billDto) {
+        BillDto responseDto = billService.addBill(billDto);
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{billId}")
-    ResponseEntity<BillDto> updateBill(@RequestBody BillDto billDto, @PathVariable Long billId) {
-        BillDto responseDto = billService.updateBill(billDto, billId);
+    /*
+        @PutMapping(value = "/{billId}")
+        ResponseEntity<BillDto> updateBill(@RequestBody BillDto billDto, @PathVariable Long billId) {
+            BillDto responseDto = billService.updateBill(billDto, billId);
+            return new ResponseEntity<>(responseDto, HttpStatus.OK);
+        }
+    */
+    @PatchMapping(value = "/{billId}")
+    ResponseEntity<BillDto> updateBill(@RequestBody BillDtoPut billDtoPut, @PathVariable Long billId) {
+        BillDto responseDto = billService.updateBill(billDtoPut, billId);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 

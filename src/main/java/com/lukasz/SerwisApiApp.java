@@ -9,6 +9,8 @@ import com.lukasz.employee.Employee;
 import com.lukasz.employee.EmployeeRepository;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
+import com.lukasz.utils.ChargeCalculator;
+import com.lukasz.utils.Tariff;
 import jdk.nashorn.internal.codegen.ClassEmitter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -17,7 +19,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
+
+import static com.lukasz.utils.ChargeCalculator.calculateCharge;
+import static com.lukasz.utils.ChargeCalculator.calculateTimeSpent;
+import static com.lukasz.utils.ChargeCalculator.formatFromMillisToHoursCeil;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.lukasz"})
@@ -27,16 +35,17 @@ public class SerwisApiApp {
 
 
     public static void main(String[] args) throws InterruptedException {
-      /*  LocalDateTime parkingData = LocalDateTime.of(2019, 10, 22, 8, 41, 1, 1);
+        SpringApplication.run(SerwisApiApp.class, args);
+
+        //LocalDateTime parkingData = LocalDateTime.of(2019, 10, 22, 8, 41, 1, 1);
+        //ROK-MIESIAC-DZIEN-- T --GODZINA-MINUTA-SEKUNDA-MILISEKUNDA
+        LocalDateTime parkingData = LocalDateTime.parse("2019-12-08T21:21:00.492");
         Tariff tariff = new Tariff(BigDecimal.valueOf(10.29), BigDecimal.valueOf(8.00));
 
-        BigDecimal charge = calculateCharge(parkingData, tariff);
-        System.out.println("Parking date: " + parkingData);
-        System.out.println("Cena: " + charge);
-       */
+        //BigDecimal charge = calculateCharge(parkingData, tariff);
 
-
-         SpringApplication.run(SerwisApiApp.class, args);
+        LocalDateTime test = LocalDateTime.parse("2019-07-15T01:09:44.492");
+        //BigDecimal charge2 = calculateCharge(test, tariff);
     }
 
     @Bean

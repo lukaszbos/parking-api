@@ -1,5 +1,6 @@
 package com.lukasz.ticket;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lukasz.client.Client;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,11 +18,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class VirtualTicket {
+public class Ticket {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long virtualTicketId;
+    private Long ticketId;
     private LocalDateTime enteredParkingAt;
     private boolean isClientAtParking;
     private LocalDateTime leftParkingAt;
@@ -30,11 +31,12 @@ public class VirtualTicket {
     @ManyToOne
     private Client client;
 
-    public VirtualTicket(LocalDateTime enteredParkingAt, boolean isClientAtParking, LocalDateTime leftParkingAt, Client client){
+    public Ticket(LocalDateTime enteredParkingAt, boolean isClientAtParking, LocalDateTime leftParkingAt, Client client){
         this.enteredParkingAt = enteredParkingAt;
         this.isClientAtParking = isClientAtParking;
         this.leftParkingAt = leftParkingAt;
         this.client = client;
     }
+
 
 }

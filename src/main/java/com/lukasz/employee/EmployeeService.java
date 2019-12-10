@@ -70,12 +70,12 @@ public class EmployeeService {
         return parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
     }
 
-    EmployeeDto updateEmployee(EmployeeDto employeeDTO, Long employeeId) {
-        Employee employee = employeeMapper.toModel(employeeDTO);
+    EmployeeDto updateEmployee(EmployeeDto employeeDto, Long employeeId) {
+        Employee employee = employeeMapper.toModel(employeeDto);
         employee.setEmployeeId(employeeId);
-        employee.setParking(getParkingById(employeeDTO.getParking().getParkingId()));
-        Employee addedEmployee = employeeRepository.save(employee);
-        return employeeMapper.toDto(addedEmployee);
+        employee.setParking(getParkingById(employeeDto.getParking().getParkingId()));
+        Employee updatedEmployee = employeeRepository.save(employee);
+        return employeeMapper.toDto(updatedEmployee);
     }
 
     EmployeeDto deleteEmployee(Long employeeId) {

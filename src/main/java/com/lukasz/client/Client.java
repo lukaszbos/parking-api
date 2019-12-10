@@ -1,6 +1,5 @@
 package com.lukasz.client;
 
-import jdk.internal.instrumentation.TypeMapping;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +9,6 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.UUID;
 
 @Data

@@ -5,15 +5,20 @@ import com.lukasz.client.ClientRepository;
 import com.lukasz.exception.NotFoundException;
 import com.lukasz.parking.Parking;
 import com.lukasz.parking.ParkingRepository;
+import com.lukasz.utils.ChargeCalculator;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
+import static java.util.logging.Level.INFO;
 
 @Service
 public class BillService {
@@ -21,16 +26,21 @@ public class BillService {
     private final BillRepository billRepository;
     private final ClientRepository clientRepository;
     private final BillMapper billMapper;
+    private final BillMapperPost billMapperPost;
+
+    protected final Log logger = LogFactory.getLog(getClass());
 
     @Autowired
-    public BillService(ParkingRepository parkingRepository, BillRepository billRepository, ClientRepository clientRepository, BillMapper billMapper) {
+    public BillService(ParkingRepository parkingRepository, BillRepository billRepository, ClientRepository clientRepository,
+                       BillMapper billMapper, BillMapperPost billMapperPost) {
         this.parkingRepository = parkingRepository;
         this.billRepository = billRepository;
         this.clientRepository = clientRepository;
         this.billMapper = billMapper;
+        this.billMapperPost = billMapperPost;
     }
 
-    List<BillDto> getBills(Long parkingId, UUID clientId)  {
+    List<BillDto> getBills(Long parkingId, UUID clientId) {
         List<Bill> bills = new ArrayList<>();
         if (!isNull(parkingId) && !isNull(clientId))
             billRepository.findByParking_ParkingIdAndClient_ClientId(parkingId, clientId).forEach(bills::add);
@@ -44,6 +54,14 @@ public class BillService {
                 .stream()
                 .map(bill -> billMapper.toDto(bill))
                 .collect(Collectors.toList());
+    }
+
+    BillDto getLastBillOfClient(UUID clientId){
+        BillDto billDto;
+        //Bill bill = billRepository.findTop1ByClient_ClientIdOrderByBillIdDesc(clientId);
+        //logger.info("Ostatni paragon klienta : " + bill);
+        //return billMapper.toDto(bill);
+        return null;
     }
 
     private List<BillDto> getAllBills() {
@@ -60,10 +78,10 @@ public class BillService {
         return billMapper.toDto(bill);
     }
 
-    BillDto addBill(BillDto billDTO) {
-        Bill bill = billMapper.toModel(billDTO);
-        bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
-        bill.setClient(getClientById(billDTO.getClient().getClientId()));
+    public BillDto addBill(BillDto billDto) {
+        Bill bill = billMapper.toModel(billDto);
+        bill.setParking(getParkingById(billDto.getParking().getParkingId()));
+        bill.setClient(getClientById(billDto.getClient().getClientId()));
         Bill addedBill = billRepository.save(bill);
         return billMapper.toDto(addedBill);
     }
@@ -77,14 +95,30 @@ public class BillService {
 
     }
 
-    BillDto updateBill(BillDto billDTO, Long billId) {
-        Bill bill = billMapper.toModel(billDTO);
+    /*
+        BillDto updateBill(BillDto billDTO, Long billId) {
+            Bill bill = billMapper.toModel(billDTO);
+            bill.setBillId(billId);
+            bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
+            bill.setClient(getClientById(billDTO.getClient().getClientId()));
+            Bill addedBill = billRepository.save(bill);
+            return billMapper.toDto(addedBill);
+        }
+    */
+
+    BillDto updateBill(BillDtoPut billDtoPut, Long billId) {
+        //BillDto billDTO = new BillDto();
+        BillDto billDto = getBillById(billId);
+    //    billDto.setLeftParkingAt(billDtoPut.getLeftParkingAt());
+
+        Bill bill = billMapper.toModel(billDto);
         bill.setBillId(billId);
-        bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
-        bill.setClient(getClientById(billDTO.getClient().getClientId()));
+        bill.setParking(getParkingById(billDto.getParking().getParkingId()));
+        bill.setClient(getClientById(billDto.getClient().getClientId()));
         Bill addedBill = billRepository.save(bill);
         return billMapper.toDto(addedBill);
     }
+
 
     BillDto deleteBill(Long billId) {
         Bill bill = billRepository.findById(billId).orElseThrow(() -> new NotFoundException("Bill not Found :D :D"));
