@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.isNull;
+
 @Service
 public class BillService {
     //private final ParkingRepository parkingRepository;
@@ -30,23 +32,19 @@ public class BillService {
         this.billMapper = billMapper;
     }
 
-    /*
-        List<BillDto> getBills(Long parkingId, UUID clientId) {
-            List<Bill> bills = new ArrayList<>();
-            if (!isNull(parkingId) && !isNull(clientId))
-                billRepository.findByParking_ParkingIdAndClient_ClientId(parkingId, clientId).forEach(bills::add);
-            if (!isNull(parkingId) && isNull(clientId))
-                billRepository.findByParking_ParkingId(parkingId).forEach(bills::add);
-            if (isNull(parkingId) && !isNull(clientId))
-                billRepository.findByClient_ClientId(clientId).forEach(bills::add);
-            else
-                getAllBills();
-            return bills
-                    .stream()
-                    .map(bill -> billMapper.toDto(bill))
-                    .collect(Collectors.toList());
-        }
-    */
+
+    List<BillDto> getBills(UUID clientId) {
+        List<Bill> bills = new ArrayList<>();
+        if (!isNull(clientId))
+            billRepository.findByClient_ClientId(clientId).forEach(bills::add);
+        else
+            getAllBills();
+        return bills
+                .stream()
+                .map(bill -> billMapper.toDto(bill))
+                .collect(Collectors.toList());
+    }
+
     BillDto getLastBillOfClient(UUID clientId) {
         BillDto billDto;
         //Bill bill = billRepository.findTop1ByClient_ClientIdOrderByBillIdDesc(clientId);
