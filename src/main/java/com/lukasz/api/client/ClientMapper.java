@@ -10,7 +10,7 @@ public class ClientMapper {
     }
 
     public ClientDto toDto(Client client) {
-        return new ClientDto(client.getClientId(), client.getName(), client.getSurname(), client.getEmail());
+        return new ClientDto(client.getClientId(), client.getName(), client.getSurname(), client.getEmail(), client.getPassword());
     }
 
 }

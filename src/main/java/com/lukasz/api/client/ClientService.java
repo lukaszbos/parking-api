@@ -3,6 +3,7 @@ package com.lukasz.api.client;
 import com.lukasz.api.exception.ConflictException;
 import com.lukasz.api.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +17,10 @@ public class ClientService {
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
 
+
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public ClientService(ClientRepository clientRepository, ClientMapper clientMapper) {
         this.clientRepository = clientRepository;
         this.clientMapper = clientMapper;
@@ -36,9 +40,15 @@ public class ClientService {
         return clientMapper.toDto(client);
     }
 
+    public Client getClient(UUID clientId) {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Client not found :D :D :D "));
+        return client;
+    }
+
     public ClientDto addClient(ClientDto clientDto) {
         checkIfEmailExist(clientDto);
         Client client = clientMapper.toModel(clientDto);
+        client.setPassword(passwordEncoder.encode(clientDto.getPassword()));
         Client addedClient = clientRepository.save(client);
         return clientMapper.toDto(addedClient);
     }

@@ -14,5 +14,7 @@ public class ClientDto {
     private String name;
     private String surname;
     private String email;
+    private String password;
+
 
 }

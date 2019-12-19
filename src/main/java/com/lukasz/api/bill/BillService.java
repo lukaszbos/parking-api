@@ -62,7 +62,7 @@ public class BillService {
                 .collect(Collectors.toList());
     }
 
-    BillDto getBillById(Long billId) {
+    public BillDto getBillById(Long billId) {
         Bill bill = billRepository.findById(billId).orElseThrow(() -> new NotFoundException("Bill not Found :D :D"));
         return billMapper.toDto(bill);
     }

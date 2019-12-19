@@ -4,6 +4,7 @@ import com.lukasz.api.client.Client;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,6 @@ public class Bill {
     @JoinColumn(name = "clientId")
     @ManyToOne
     private Client client;
-
     public Bill(Integer numberOfHours, BigDecimal cost, Client client) {
 
         this.numberOfHours = numberOfHours;

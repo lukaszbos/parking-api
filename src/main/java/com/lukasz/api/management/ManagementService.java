@@ -4,6 +4,8 @@ import com.lukasz.api.bill.Bill;
 import com.lukasz.api.bill.BillDto;
 import com.lukasz.api.bill.BillMapper;
 import com.lukasz.api.bill.BillService;
+import com.lukasz.api.client.Client;
+import com.lukasz.api.client.ClientService;
 import com.lukasz.api.ticket.TicketDto;
 import com.lukasz.api.ticket.TicketService;
 import com.lukasz.api.utils.Tariff;
@@ -25,13 +27,15 @@ public class ManagementService {
     private final BillService billService;
     private final TicketService ticketService;
     private final BillMapper billMapper;
+    private final ClientService clientService;
     protected final Log logger = LogFactory.getLog(getClass());
 
     @Autowired
-    ManagementService(BillService billService, TicketService ticketService, BillMapper billMapper) {
+    ManagementService(BillService billService, TicketService ticketService, BillMapper billMapper, ClientService clientService) {
         this.billService = billService;
         this.ticketService = ticketService;
         this.billMapper = billMapper;
+        this.clientService = clientService;
     }
 
     public TicketDto addTicket(ManagementDto managementDto) {
@@ -64,6 +68,7 @@ public class ManagementService {
             BigDecimal cost = calculateCharge(parkingDate, leftParkingDate, tariff);
             int timeSpent = calculateTimeSpent(parkingDate, leftParkingDate);
 
+            //Client clientPass = clientService.getClient(managementDto.getClient().getClientId());
             Bill bill = new Bill(timeSpent, cost, managementDto.getClient());
             BillDto billDto = billMapper.toDto(bill);
             BillDto addedBillDto = billService.addBill(billDto);

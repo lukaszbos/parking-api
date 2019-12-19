@@ -30,11 +30,13 @@ public class Client {
     private String name;
     private String surname;
     private String email;
+    private String password;
 
     public Client(String name, String surname, String email) {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        //this.password = password;
     }
 
 }
