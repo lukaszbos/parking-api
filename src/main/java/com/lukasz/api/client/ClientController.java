@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/clients")
+//@RequestMapping("/clients")
 public class ClientController {
 
     private final ClientService clientService;
@@ -26,32 +26,32 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping()
+    @GetMapping("/clients")
     public ResponseEntity<List<ClientDto>> getAllClients() {
         List<ClientDto> clientDtos = clientService.getAllClients();
         return new ResponseEntity<>(clientDtos, HttpStatus.OK);
     }
 
-    @GetMapping("/{clientId}")
+    @GetMapping("/clients/{clientId}")
     public ResponseEntity<ClientDto> getClientById(@PathVariable UUID clientId) {
         ClientDto clientDto = clientService.getClientById(clientId);
         return new ResponseEntity<>(clientDto, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping("/newclient")
     public ResponseEntity<ClientDto> addClient(@RequestBody ClientDto clientDto) {
         ClientDto addedClientDto = clientService.addClient(clientDto);
         return new ResponseEntity<>(addedClientDto, HttpStatus.CREATED);
     }
 
 
-    @PutMapping(value = "/{clientId}")
+    @PutMapping(value = "/clients/{clientId}")
     public ResponseEntity<ClientDto> updateClient(@RequestBody ClientDto clientDto, @PathVariable UUID clientId) {
         ClientDto updatedClientDto = clientService.updateClient(clientDto, clientId);
         return new ResponseEntity<>(updatedClientDto, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/{clientId}")
+    @DeleteMapping(value = "/clients/{clientId}")
     public ResponseEntity<ClientDto> deleteClient(@PathVariable UUID clientId) {
         clientService.deleteClient(clientId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
