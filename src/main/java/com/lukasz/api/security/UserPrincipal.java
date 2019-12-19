@@ -20,8 +20,8 @@ public class UserPrincipal implements UserDetails {
     //TODO sprawdzić czy user nie zadziala a jak nie to nulla przypisać
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //return Collections.singleton(new SimpleGrantedAuthority("CLIENT"));
-        return null;
+        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        //return null;
     }
 
     @Override
@@ -36,21 +36,21 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

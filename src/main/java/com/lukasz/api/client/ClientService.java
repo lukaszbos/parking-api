@@ -2,6 +2,8 @@ package com.lukasz.api.client;
 
 import com.lukasz.api.exception.ConflictException;
 import com.lukasz.api.exception.NotFoundException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class ClientService {
 
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
-
+    protected final Log logger = LogFactory.getLog(getClass());
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -46,9 +48,12 @@ public class ClientService {
     }
 
     public ClientDto addClient(ClientDto clientDto) {
+        logger.info("Odebrany client dto" + clientDto);
         checkIfEmailExist(clientDto);
         Client client = clientMapper.toModel(clientDto);
+        logger.info("przed dodaniem hasla" + client);
         client.setPassword(passwordEncoder.encode(clientDto.getPassword()));
+        logger.info("po dodaniu hasla" + client);
         Client addedClient = clientRepository.save(client);
         return clientMapper.toDto(addedClient);
     }
