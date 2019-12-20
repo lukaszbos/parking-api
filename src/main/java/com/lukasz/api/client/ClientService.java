@@ -5,7 +5,6 @@ import com.lukasz.api.exception.NotFoundException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +19,9 @@ public class ClientService {
     private final ClientMapper clientMapper;
     protected final Log logger = LogFactory.getLog(getClass());
 
+    //@Autowired
+    //private PasswordEncoder passwordEncoder;
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
     public ClientService(ClientRepository clientRepository, ClientMapper clientMapper) {
         this.clientRepository = clientRepository;
         this.clientMapper = clientMapper;
@@ -47,12 +46,19 @@ public class ClientService {
         return client;
     }
 
+    public ClientDto getClientByIdAndPassword(String email, String password) {
+        logger.info("login i haslo" + email + password);
+        Client client = clientRepository.findAllByEmailAndAndPassword(email, password).orElseThrow(() -> new NotFoundException("Niepoprawne haslo lub login"));
+        return clientMapper.toDto(client);
+    }
+
+
     public ClientDto addClient(ClientDto clientDto) {
         logger.info("Odebrany client dto" + clientDto);
         checkIfEmailExist(clientDto);
         Client client = clientMapper.toModel(clientDto);
         logger.info("przed dodaniem hasla" + client);
-        client.setPassword(passwordEncoder.encode(clientDto.getPassword()));
+        //client.setPassword(passwordEncoder.encode(clientDto.getPassword()));
         logger.info("po dodaniu hasla" + client);
         Client addedClient = clientRepository.save(client);
         return clientMapper.toDto(addedClient);
@@ -80,5 +86,6 @@ public class ClientService {
         clientRepository.deleteById(clientId);
         return clientMapper.toDto(client);
     }
+
 
 }

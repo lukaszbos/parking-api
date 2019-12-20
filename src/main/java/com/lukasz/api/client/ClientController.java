@@ -32,9 +32,10 @@ public class ClientController {
         return new ResponseEntity<>(clientDtos, HttpStatus.OK);
     }
 
-    @GetMapping("/clients/{clientId}")
-    public ResponseEntity<ClientDto> getClientById(@PathVariable UUID clientId) {
-        ClientDto clientDto = clientService.getClientById(clientId);
+    @GetMapping("/clients/{email}/{password}")
+    public ResponseEntity<ClientDto> getClientById(@PathVariable String email, @PathVariable String password) {
+        //ClientDto clientDto = clientService.getClientById(clientId);
+        ClientDto clientDto = clientService.getClientByIdAndPassword(email, password);
         return new ResponseEntity<>(clientDto, HttpStatus.OK);
     }
 
