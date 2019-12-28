@@ -32,11 +32,11 @@ public class Client {
     private String email;
     private String password;
 
-    public Client(String name, String surname, String email) {
+    public Client(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
-        //this.password = password;
+        this.password = password;
     }
 
 }

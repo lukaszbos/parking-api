@@ -39,7 +39,7 @@ public class ClientController {
         return new ResponseEntity<>(clientDto, HttpStatus.OK);
     }
 
-    @PostMapping("/newclient")
+    @PostMapping("/clients")
     public ResponseEntity<ClientDto> addClient(@RequestBody ClientDto clientDto) {
         ClientDto addedClientDto = clientService.addClient(clientDto);
         return new ResponseEntity<>(addedClientDto, HttpStatus.CREATED);
