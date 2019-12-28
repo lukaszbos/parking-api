@@ -15,7 +15,7 @@ public class BillMapper {
 
         //BigDecimal cost = calculateCharge(parkingDate, leftParkingDate, tariff);
 
-        return new Bill(billDTO.getNumberOfHours(), billDTO.getCost(), billDTO.getClient());
+        return new Bill(billDTO.getNumberOfHours(), billDTO.getCost(), billDTO.getClient(), billDTO.getParking());
     }
 
     /*
@@ -24,7 +24,7 @@ public class BillMapper {
         }
     */
     public BillDto toDto(Bill bill) {
-        return new BillDto(bill.getBillId(),bill.getNumberOfHours(),bill.getCost(), bill.getClient());
+        return new BillDto(bill.getBillId(),bill.getNumberOfHours(),bill.getCost(), bill.getClient(), bill.getParking());
     }
 
 

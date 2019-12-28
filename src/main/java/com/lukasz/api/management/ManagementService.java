@@ -47,6 +47,7 @@ public class ManagementService {
         TicketDto ticketDto = new TicketDto(managementDto.getTicketId(), managementDto.getEnteredParkingAt(), managementDto.isClientAtParking(),
                 managementDto.getLeftParkingAt(), managementDto.getClient(), managementDto.getParking());
         TicketDto responseDto = ticketService.addTicket(ticketDto);
+        //BillDto billDto = billService.addBill()
         logger.info("Zwrotka z kontrolera ticket: " + responseDto);
 
         return responseDto;

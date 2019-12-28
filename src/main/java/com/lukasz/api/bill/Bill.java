@@ -1,9 +1,11 @@
 package com.lukasz.api.bill;
 
 import com.lukasz.api.client.Client;
+import com.lukasz.api.parking.Parking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,11 +28,21 @@ public class Bill {
     @JoinColumn(name = "clientId")
     @ManyToOne
     private Client client;
-    public Bill(Integer numberOfHours, BigDecimal cost, Client client) {
 
+    @ManyToOne
+    @JoinColumn(name = "parkingId")
+    private Parking parking;
+
+    public Bill(Integer numberOfHours, BigDecimal cost, Client client, Parking parking) {
         this.numberOfHours = numberOfHours;
         this.cost = cost;
-        //this.parking = parking;
+        this.client = client;
+        this.parking = parking;
+    }
+
+    public Bill(Integer numberOfHours, BigDecimal cost, Client client) {
+        this.numberOfHours = numberOfHours;
+        this.cost = cost;
         this.client = client;
     }
 
