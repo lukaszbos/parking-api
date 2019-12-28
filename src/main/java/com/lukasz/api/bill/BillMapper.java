@@ -11,11 +11,11 @@ public class BillMapper {
 
         // LocalDateTime parkingDate = billDTO.getEnteredParkingAt();
         // LocalDateTime leftParkingDate = billDTO.getLeftParkingAt();
-        Tariff tariff = new Tariff(BigDecimal.valueOf(10.29), BigDecimal.valueOf(8.00));
+        //Tariff tariff = new Tariff(BigDecimal.valueOf(10.29), BigDecimal.valueOf(8.00));
 
         //BigDecimal cost = calculateCharge(parkingDate, leftParkingDate, tariff);
 
-        return new Bill(0, null, billDTO.getClient());
+        return new Bill(billDTO.getNumberOfHours(), billDTO.getCost(), billDTO.getClient());
     }
 
     /*
@@ -24,7 +24,7 @@ public class BillMapper {
         }
     */
     public BillDto toDto(Bill bill) {
-        return new BillDto(bill.getBillId(), bill.getClient());
+        return new BillDto(bill.getBillId(),bill.getNumberOfHours(),bill.getCost(), bill.getClient());
     }
 
 
