@@ -70,7 +70,7 @@ public class ManagementService {
             int timeSpent = calculateTimeSpent(parkingDate, leftParkingDate);
 
             //Client clientPass = clientService.getClient(managementDto.getClient().getClientId());
-            Bill bill = new Bill(timeSpent, cost, managementDto.getClient());
+            Bill bill = new Bill(timeSpent, cost, managementDto.getClient(), managementDto.getParking());
             BillDto billDto = billMapper.toDto(bill);
             BillDto addedBillDto = billService.addBill(billDto);
             logger.info("Taki bill dodalem " + addedBillDto);
