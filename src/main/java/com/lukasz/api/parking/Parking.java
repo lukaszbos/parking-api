@@ -1,13 +1,10 @@
 package com.lukasz.api.parking;
-
+import com.lukasz.api.address.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +16,12 @@ public class Parking {
     private Long parkingId;
     private String name;
 
-    public Parking(String name) {
+    @JoinColumn(name = "addressId")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Address address;
+
+    public Parking(String name, Address address) {
         this.name = name;
+        this.address = address;
     }
 }

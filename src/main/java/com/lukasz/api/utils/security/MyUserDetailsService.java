@@ -1,4 +1,4 @@
-//package com.lukasz.api.security;
+//package com.lukasz.api.utils.security;
 //
 //import com.lukasz.api.client.Client;
 //import com.lukasz.api.client.ClientRepository;

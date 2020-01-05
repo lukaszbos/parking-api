@@ -1,4 +1,4 @@
-//package com.lukasz.api.security;
+//package com.lukasz.api.utils.security;
 //
 //import org.springframework.context.annotation.Configuration;
 //import org.apache.logging.log4j.LogManager;
