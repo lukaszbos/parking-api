@@ -4,7 +4,6 @@ import com.lukasz.api.bill.Bill;
 import com.lukasz.api.bill.BillDto;
 import com.lukasz.api.bill.BillMapper;
 import com.lukasz.api.bill.BillService;
-import com.lukasz.api.client.Client;
 import com.lukasz.api.client.ClientService;
 import com.lukasz.api.ticket.TicketDto;
 import com.lukasz.api.ticket.TicketService;
@@ -45,7 +44,7 @@ public class ManagementService {
 //        logger.info("Zwrotka z kontrolera bill: " + responseEntityBill);
 
         TicketDto ticketDto = new TicketDto(managementDto.getTicketId(), managementDto.getEnteredParkingAt(), managementDto.isClientAtParking(),
-                managementDto.getLeftParkingAt(), managementDto.getClient(), managementDto.getParking());
+                managementDto.getLeftParkingAt(), managementDto.getClient(), managementDto.getCarPark());
         TicketDto responseDto = ticketService.addTicket(ticketDto);
         //BillDto billDto = billService.addBill()
         logger.info("Zwrotka z kontrolera ticket: " + responseDto);
@@ -70,7 +69,7 @@ public class ManagementService {
             int timeSpent = calculateTimeSpent(parkingDate, leftParkingDate);
 
             //Client clientPass = clientService.getClient(managementDto.getClient().getClientId());
-            Bill bill = new Bill(timeSpent, cost, managementDto.getClient(), managementDto.getParking());
+            Bill bill = new Bill(timeSpent, cost, managementDto.getClient(), managementDto.getCarPark());
             BillDto billDto = billMapper.toDto(bill);
             BillDto addedBillDto = billService.addBill(billDto);
             logger.info("Taki bill dodalem " + addedBillDto);

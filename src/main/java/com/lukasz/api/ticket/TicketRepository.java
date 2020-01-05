@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findByClient_ClientId(UUID clientId);
     Optional<Ticket> findTop1ByClient_ClientIdOrderByTicketIdDesc(UUID clientId);
-    List<Ticket> findByParking_ParkingId(Long parkingId);
-    List<Ticket> findByParking_ParkingIdAndClient_ClientId(Long parkingId, UUID clientId);
+    //List<Ticket> findByParking_ParkingId(Long parkingId);
+    //List<Ticket> findByParking_ParkingIdAndClient_ClientId(Long parkingId, UUID clientId);
     //Optional<Ticket> findByisClientAtParking(Long ticketId);
 }

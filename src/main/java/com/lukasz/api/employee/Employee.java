@@ -1,6 +1,6 @@
 package com.lukasz.api.employee;
 
-import com.lukasz.api.parking.Parking;
+import com.lukasz.api.carpark.CarPark;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,12 +26,12 @@ public class Employee {
 
     @JoinColumn(name = "parkingId")
     @ManyToOne
-    private Parking parking;
+    private CarPark carPark;
 
-    public Employee(String name, String surname, String position, Parking parking) {
+    public Employee(String name, String surname, String position, CarPark carPark) {
         this.name = name;
         this.surname = surname;
         this.position = position;
-        this.parking = parking;
+        this.carPark = carPark;
     }
 }

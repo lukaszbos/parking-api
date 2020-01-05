@@ -1,9 +1,6 @@
 package com.lukasz.api.bill;
 
-import com.lukasz.api.utils.Tariff;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
 
 @Component
 public class BillMapper {
@@ -15,7 +12,7 @@ public class BillMapper {
 
         //BigDecimal cost = calculateCharge(parkingDate, leftParkingDate, tariff);
 
-        return new Bill(billDTO.getNumberOfHours(), billDTO.getCost(), billDTO.getClient(), billDTO.getParking());
+        return new Bill(billDTO.getNumberOfHours(), billDTO.getCost(), billDTO.getClient(), billDTO.getCarPark());
     }
 
     /*
@@ -24,7 +21,7 @@ public class BillMapper {
         }
     */
     public BillDto toDto(Bill bill) {
-        return new BillDto(bill.getBillId(),bill.getNumberOfHours(),bill.getCost(), bill.getClient(), bill.getParking());
+        return new BillDto(bill.getBillId(),bill.getNumberOfHours(),bill.getCost(), bill.getClient(), bill.getCarPark());
     }
 
 

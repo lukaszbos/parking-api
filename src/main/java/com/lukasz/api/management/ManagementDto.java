@@ -1,8 +1,8 @@
 package com.lukasz.api.management;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lukasz.api.carpark.CarPark;
 import com.lukasz.api.client.Client;
-import com.lukasz.api.parking.Parking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class ManagementDto {
     private LocalDateTime leftParkingAt;
 
     private Long ticketId;
-    private Parking parking;
+    private CarPark carPark;
     @JsonProperty
     private boolean isClientAtParking;
 

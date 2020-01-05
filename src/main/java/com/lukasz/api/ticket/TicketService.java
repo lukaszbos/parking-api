@@ -1,11 +1,11 @@
 package com.lukasz.api.ticket;
 
+import com.lukasz.api.carpark.CarPark;
 import com.lukasz.api.client.Client;
 import com.lukasz.api.client.ClientRepository;
 import com.lukasz.api.exception.ConflictException;
 import com.lukasz.api.exception.NotFoundException;
-import com.lukasz.api.parking.Parking;
-import com.lukasz.api.parking.ParkingRepository;
+import com.lukasz.api.carpark.CarParkRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +22,16 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final TicketMapper ticketMapper;
     private final ClientRepository clientRepository;
-    private final ParkingRepository parkingRepository;
+    private final CarParkRepository carParkRepository;
 
     protected final Log logger = LogFactory.getLog(getClass());
 
     @Autowired
-    TicketService(TicketRepository ticketRepository, TicketMapper ticketMapper, ClientRepository clientRepository, ParkingRepository parkingRepository) {
+    TicketService(TicketRepository ticketRepository, TicketMapper ticketMapper, ClientRepository clientRepository, CarParkRepository carParkRepository) {
         this.ticketRepository = ticketRepository;
         this.ticketMapper = ticketMapper;
         this.clientRepository = clientRepository;
-        this.parkingRepository = parkingRepository;
+        this.carParkRepository = carParkRepository;
     }
 
     /*
@@ -81,7 +81,7 @@ public class TicketService {
 
         Ticket ticket = ticketMapper.toModel(ticketDto);
         ticket.setClient(getClientById(clientId));
-        ticket.setParking(getParkingById(ticketDto.getParking().getParkingId()));
+        ticket.setCarPark(getParkingById(ticketDto.getCarPark().getCarParkId()));
 
         Ticket addedTicket;
         //TicketDto checkTicket = getLastTicketOfClient(clientId);
@@ -108,8 +108,8 @@ public class TicketService {
         return clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Client not Found - ticket - 2"));
     }
 
-    private Parking getParkingById(Long parkingId) {
-        return parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found - ticket -3"));
+    private CarPark getParkingById(Long parkingId) {
+        return carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found - ticket -3"));
     }
 
 

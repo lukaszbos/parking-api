@@ -1,7 +1,7 @@
 package com.lukasz.api.bill;
 
+import com.lukasz.api.carpark.CarPark;
 import com.lukasz.api.client.Client;
-import com.lukasz.api.parking.Parking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +16,5 @@ public class BillDto {
     private Integer numberOfHours;
     private BigDecimal cost;
     private Client client;
-    private Parking parking;
+    private CarPark carPark;
 }

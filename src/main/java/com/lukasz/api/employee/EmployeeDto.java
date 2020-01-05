@@ -1,6 +1,6 @@
 package com.lukasz.api.employee;
 
-import com.lukasz.api.parking.Parking;
+import com.lukasz.api.carpark.CarPark;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +13,5 @@ public class EmployeeDto {
     private String name;
     private String surname;
     private String position;
-    private Parking parking;
+    private CarPark carPark;
 }

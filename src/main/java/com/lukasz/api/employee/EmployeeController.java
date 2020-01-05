@@ -28,14 +28,14 @@ public class EmployeeController {
 
     @GetMapping
     public ResponseEntity<List<EmployeeDto>> getEmployees(@RequestParam(name = "parkingId") Long parkingId) {
-        List<EmployeeDto> employeeDtos = employeeService.getEmployee(parkingId);
-        return new ResponseEntity<>(employeeDtos, HttpStatus.OK);
+        List<EmployeeDto> responseDto = employeeService.getEmployee(parkingId);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{employeeId}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long employeeId) {
-        EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
-        return new ResponseEntity<>(employeeDto, HttpStatus.OK);
+        EmployeeDto responseDto = employeeService.getEmployeeById(employeeId);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
 
     }
 
@@ -46,8 +46,8 @@ public class EmployeeController {
     }
 
     @PutMapping(value = "/{employeeId}")
-    public ResponseEntity<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDTOo, @PathVariable Long employeeId) {
-        EmployeeDto responseDto = employeeService.updateEmployee(employeeDTOo, employeeId);
+    public ResponseEntity<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDTO, @PathVariable Long employeeId) {
+        EmployeeDto responseDto = employeeService.updateEmployee(employeeDTO, employeeId);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 

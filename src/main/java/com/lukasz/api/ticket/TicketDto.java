@@ -1,7 +1,7 @@
 package com.lukasz.api.ticket;
 
+import com.lukasz.api.carpark.CarPark;
 import com.lukasz.api.client.Client;
-import com.lukasz.api.parking.Parking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,13 +17,13 @@ public class TicketDto {
     private boolean isClientAtParking;
     private LocalDateTime leftParkingAt;
     private Client client;
-    private Parking parking;
+    private CarPark carPark;
 
-    public TicketDto(LocalDateTime enteredParkingAt, boolean isClientAtParking, Client client, Parking parking) {
+    public TicketDto(LocalDateTime enteredParkingAt, boolean isClientAtParking, Client client, CarPark carPark) {
         this.enteredParkingAt = enteredParkingAt;
         this.isClientAtParking = isClientAtParking;
         this.client = client;
-        this.parking = parking;
+        this.carPark = carPark;
     }
 }
 

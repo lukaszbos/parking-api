@@ -1,7 +1,7 @@
 package com.lukasz.api.ticket;
 
 import com.lukasz.api.client.Client;
-import com.lukasz.api.parking.Parking;
+import com.lukasz.api.carpark.CarPark;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,15 +33,15 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "parkingId")
-    private Parking parking;
+    private CarPark carPark;
 
     public Ticket(LocalDateTime enteredParkingAt, boolean isClientAtParking, LocalDateTime leftParkingAt,
-                  Client client, Parking parking){
+                  Client client, CarPark carPark){
         this.enteredParkingAt = enteredParkingAt;
         this.isClientAtParking = isClientAtParking;
         this.leftParkingAt = leftParkingAt;
         this.client = client;
-        this.parking = parking;
+        this.carPark = carPark;
     }
 
 

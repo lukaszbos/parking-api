@@ -1,7 +1,7 @@
 package com.lukasz.api.bill;
 
+import com.lukasz.api.carpark.CarPark;
 import com.lukasz.api.client.Client;
-import com.lukasz.api.parking.Parking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,13 +31,13 @@ public class Bill {
 
     @ManyToOne
     @JoinColumn(name = "parkingId")
-    private Parking parking;
+    private CarPark carPark;
 
-    public Bill(Integer numberOfHours, BigDecimal cost, Client client, Parking parking) {
+    public Bill(Integer numberOfHours, BigDecimal cost, Client client, CarPark carPark) {
         this.numberOfHours = numberOfHours;
         this.cost = cost;
         this.client = client;
-        this.parking = parking;
+        this.carPark = carPark;
     }
 
     public Bill(Integer numberOfHours, BigDecimal cost, Client client) {

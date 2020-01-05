@@ -1,4 +1,4 @@
-package com.lukasz.api.parking;
+package com.lukasz.api.carpark;
 import com.lukasz.api.address.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,17 +10,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Parking {
+public class CarPark {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long parkingId;
+    private Long carParkId;
     private String name;
 
     @JoinColumn(name = "addressId")
     @OneToOne(fetch = FetchType.LAZY)
     private Address address;
 
-    public Parking(String name, Address address) {
+    public CarPark(String name, Address address) {
         this.name = name;
         this.address = address;
     }

@@ -3,8 +3,8 @@ package com.lukasz.api.bill;
 import com.lukasz.api.client.Client;
 import com.lukasz.api.client.ClientRepository;
 import com.lukasz.api.exception.NotFoundException;
-import com.lukasz.api.parking.Parking;
-import com.lukasz.api.parking.ParkingRepository;
+import com.lukasz.api.carpark.CarPark;
+import com.lukasz.api.carpark.CarParkRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import static java.util.Objects.isNull;
 
 @Service
 public class BillService {
-    private final ParkingRepository parkingRepository;
+    private final CarParkRepository carParkRepository;
     private final BillRepository billRepository;
     private final ClientRepository clientRepository;
     private final BillMapper billMapper;
@@ -28,11 +28,11 @@ public class BillService {
 
     @Autowired
     public BillService(BillRepository billRepository, ClientRepository clientRepository,
-                       BillMapper billMapper, ParkingRepository parkingRepository) {
+                       BillMapper billMapper, CarParkRepository carParkRepository) {
         this.billRepository = billRepository;
         this.clientRepository = clientRepository;
         this.billMapper = billMapper;
-        this.parkingRepository = parkingRepository;
+        this.carParkRepository = carParkRepository;
     }
 
 
@@ -72,15 +72,15 @@ public class BillService {
 
     public BillDto addBill(BillDto billDto) {
         Bill bill = billMapper.toModel(billDto);
-        bill.setParking(getParkingById(billDto.getParking().getParkingId()));
+        bill.setCarPark(getParkingById(billDto.getCarPark().getCarParkId()));
         bill.setClient(getClientById(billDto.getClient().getClientId()));
         Bill addedBill = billRepository.save(bill);
         return billMapper.toDto(addedBill);
     }
 
 
-    private Parking getParkingById(Long parkingId) {
-        return parkingRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
+    private CarPark getParkingById(Long parkingId) {
+        return carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
     }
 
     private Client getClientById(UUID clientId) {
@@ -91,7 +91,7 @@ public class BillService {
     BillDto updateBill(BillDto billDTO, Long billId) {
         Bill bill = billMapper.toModel(billDTO);
         bill.setBillId(billId);
-        bill.setParking(getParkingById(billDTO.getParking().getParkingId()));
+        bill.setCarPark(getParkingById(billDTO.getCarPark().getCarParkId()));
         bill.setClient(getClientById(billDTO.getClient().getClientId()));
         Bill addedBill = billRepository.save(bill);
         return billMapper.toDto(addedBill);
