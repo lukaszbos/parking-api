@@ -4,7 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 
 @Data
 @NoArgsConstructor
@@ -16,8 +24,11 @@ public class CarPark {
     private Long carParkId;
     private String name;
 
+
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "address_id", referencedColumnName = "id")
     @JoinColumn(name = "addressId")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     private Address address;
 
     public CarPark(String name, Address address) {

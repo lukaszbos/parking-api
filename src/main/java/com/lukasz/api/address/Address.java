@@ -1,5 +1,7 @@
 package com.lukasz.api.address;
 
+import com.lukasz.api.carpark.CarPark;
+import com.lukasz.api.client.Client;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,9 @@ public class Address {
     int houseNumber;
     double latitude;
     double longitude;
+
+    //@OneToOne(mappedBy = "address")
+    //private CarPark carPark;
 
     public Address(String city, String street, int houseNumber, double latitude, double longitude) {
         this.city = city;

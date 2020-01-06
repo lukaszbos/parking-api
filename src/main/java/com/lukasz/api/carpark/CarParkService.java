@@ -43,6 +43,9 @@ class CarParkService {
 
     CarParkDto getCarPark(Long parkingId) {
         CarPark carPark = carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
+        //Address address = addressRepository.findById(carPark.getAddress().getAddressId()).orElseThrow(() -> new NotFoundException("Address not Found :D :D :D"));
+        //CarParkDto carParkDto
+
         return carParkMapper.toDTO(carPark);
     }
 
