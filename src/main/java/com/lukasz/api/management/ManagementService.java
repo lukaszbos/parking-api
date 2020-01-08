@@ -71,6 +71,7 @@ public class ManagementService {
             //Client clientPass = clientService.getClient(managementDto.getClient().getClientId());
             Bill bill = new Bill(timeSpent, cost, ticketService.getClientById(clientId), managementDto.getCarPark());
             BillDto billDto = billMapper.toDto(bill);
+            logger.info("Gotowy billDto " + billDto);
             BillDto addedBillDto = billService.addBill(billDto);
             logger.info("Taki bill dodalem " + addedBillDto);
             //return addedBillDto;

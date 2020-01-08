@@ -72,7 +72,7 @@ public class BillService {
 
     public BillDto addBill(BillDto billDto) {
         Bill bill = billMapper.toModel(billDto);
-        bill.setCarPark(getParkingById(billDto.getCarPark().getCarParkId()));
+        //bill.setCarPark(getParkingById(billDto.getCarPark().getCarParkId())); //TODO tutaj poprawic
         bill.setClient(getClientById(billDto.getClient().getClientId()));
         Bill addedBill = billRepository.save(bill);
         return billMapper.toDto(addedBill);
