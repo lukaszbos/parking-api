@@ -41,8 +41,8 @@ class CarParkService {
                 .collect(Collectors.toList());
     }
 
-    CarParkDto getCarPark(Long parkingId) {
-        CarPark carPark = carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found"));
+    CarParkDto getCarPark(Long carParkId) {
+        CarPark carPark = carParkRepository.findById(carParkId).orElseThrow(() -> new NotFoundException("Parking not Found"));
         return carParkMapper.toDTO(carPark);
     }
 
@@ -58,9 +58,9 @@ class CarParkService {
 
 
 
-    CarParkDto updateCarPark(CarParkDto carParkDTO, Long parkingId) {
+    CarParkDto updateCarPark(CarParkDto carParkDTO, Long carParkId) {
         CarPark carPark = carParkMapper.toModel(carParkDTO);
-        carPark.setCarParkId(parkingId);
+        carPark.setCarParkId(carParkId);
 
         Address address = addressMapper.toModel(carParkDTO);
         logger.info(carParkDTO.getAddress().getAddressId());
@@ -78,9 +78,9 @@ class CarParkService {
         return addressRepository.findById(addressId).orElseThrow(() -> new NotFoundException("Address not found - in parking"));
     }
 
-    CarParkDto deleteCarPark(Long parkingId) {
-        CarPark carPark = carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException(" Couldn't delete - parking not found  "));
-        carParkRepository.deleteById(parkingId);
+    CarParkDto deleteCarPark(Long carParkId) {
+        CarPark carPark = carParkRepository.findById(carParkId).orElseThrow(() -> new NotFoundException(" Couldn't delete - parking not found  "));
+        carParkRepository.deleteById(carParkId);
         return carParkMapper.toDTO(carPark);
     }
 }

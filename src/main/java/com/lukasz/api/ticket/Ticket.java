@@ -32,7 +32,7 @@ public class Ticket {
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "parkingId")
+    @JoinColumn(name = "carParkId")
     private CarPark carPark;
 
     public Ticket(LocalDateTime enteredParkingAt, boolean isClientAtParking, LocalDateTime leftParkingAt,

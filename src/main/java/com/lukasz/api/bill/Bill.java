@@ -30,7 +30,7 @@ public class Bill {
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "parkingId")
+    @JoinColumn(name = "carParkId")
     private CarPark carPark;
 
     public Bill(Integer numberOfHours, BigDecimal cost, Client client, CarPark carPark) {

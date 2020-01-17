@@ -27,8 +27,8 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeDto>> getEmployees(@RequestParam(name = "parkingId") Long parkingId) {
-        List<EmployeeDto> responseDto = employeeService.getEmployee(parkingId);
+    public ResponseEntity<List<EmployeeDto>> getEmployees(@RequestParam(name = "carParkId") Long carParkId) {
+        List<EmployeeDto> responseDto = employeeService.getEmployee(carParkId);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 

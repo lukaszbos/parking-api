@@ -1,6 +1,7 @@
-package com.lukasz.api.employee;
+package com.lukasz.api.vehicle;
 
 import com.lukasz.api.carpark.CarPark;
+import com.lukasz.api.client.Client;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,22 +17,17 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Employee {
+public class Vehicle {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long employeeId;
-    private String name;
-    private String surname;
-    private String position;
+    private Long vehicleId;
+    private String numberPlate;
+    private String brand;
+    private String color;
 
-    @JoinColumn(name = "carParkId")
+    @JoinColumn(name = "clientId")
     @ManyToOne
-    private CarPark carPark;
+    private Client client;
 
-    public Employee(String name, String surname, String position, CarPark carPark) {
-        this.name = name;
-        this.surname = surname;
-        this.position = position;
-        this.carPark = carPark;
-    }
 }

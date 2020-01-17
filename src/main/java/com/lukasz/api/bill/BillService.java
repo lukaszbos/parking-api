@@ -79,8 +79,8 @@ public class BillService {
     }
 
 
-    private CarPark getParkingById(Long parkingId) {
-        return carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
+    private CarPark getParkingById(Long carParkId) {
+        return carParkRepository.findById(carParkId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
     }
 
     private Client getClientById(UUID clientId) {

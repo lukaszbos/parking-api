@@ -23,21 +23,21 @@ public class EmployeeService {
         this.employeeMapper = employeeMapper;
     }
 
-    List<EmployeeDto> getEmployee(Long parkingId) {
-        if (isIdSent(parkingId)) {
-            return getEmployeesWorkingOnParking(parkingId);
+    List<EmployeeDto> getEmployee(Long carParkId) {
+        if (isIdSent(carParkId)) {
+            return getEmployeesWorkingOnParking(carParkId);
         } else
             return getAllEmployees();
     }
 
-    private boolean isIdSent(Long parkingId) {
-        return parkingId != null;
+    private boolean isIdSent(Long carParkId) {
+        return carParkId != null;
     }
 
-    private List<EmployeeDto> getEmployeesWorkingOnParking(Long parkingId) {
+    private List<EmployeeDto> getEmployeesWorkingOnParking(Long carParkId) {
 
         List<Employee> employees = new ArrayList<>();
-        employeeRepository.findByCarPark_CarParkId(parkingId).forEach(employee -> employees.add(employee));
+        employeeRepository.findByCarPark_CarParkId(carParkId).forEach(employee -> employees.add(employee));
 
         return employees
                 .stream()
@@ -66,8 +66,8 @@ public class EmployeeService {
         return employeeMapper.toDto(addedEmployee);
     }
 
-    private CarPark getParkingById(Long parkingId) {
-        return carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
+    private CarPark getParkingById(Long carParkId) {
+        return carParkRepository.findById(carParkId).orElseThrow(() -> new NotFoundException("Parking not Found :D :D :D"));
     }
 
     EmployeeDto updateEmployee(EmployeeDto employeeDto, Long employeeId) {

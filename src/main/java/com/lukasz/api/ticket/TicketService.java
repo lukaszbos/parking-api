@@ -108,8 +108,8 @@ public class TicketService {
         return clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException("Client not Found - ticket - 2"));
     }
 
-    private CarPark getParkingById(Long parkingId) {
-        return carParkRepository.findById(parkingId).orElseThrow(() -> new NotFoundException("Parking not Found - ticket -3"));
+    private CarPark getParkingById(Long carParkId) {
+        return carParkRepository.findById(carParkId).orElseThrow(() -> new NotFoundException("Parking not Found - ticket -3"));
     }
 
 
