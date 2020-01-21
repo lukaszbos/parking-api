@@ -1,4 +1,4 @@
-package com.lukasz.api.utils;
+package com.lukasz.api.utils.payment;
 
 import com.stripe.Stripe;
 import com.stripe.model.Charge;

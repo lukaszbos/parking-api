@@ -7,14 +7,13 @@ import com.lukasz.api.bill.BillService;
 import com.lukasz.api.client.ClientService;
 import com.lukasz.api.ticket.TicketDto;
 import com.lukasz.api.ticket.TicketService;
-import com.lukasz.api.utils.PaymentService;
+import com.lukasz.api.utils.payment.PaymentService;
 import com.lukasz.api.utils.Tariff;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
