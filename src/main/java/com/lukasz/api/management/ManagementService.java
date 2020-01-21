@@ -7,12 +7,14 @@ import com.lukasz.api.bill.BillService;
 import com.lukasz.api.client.ClientService;
 import com.lukasz.api.ticket.TicketDto;
 import com.lukasz.api.ticket.TicketService;
+import com.lukasz.api.utils.PaymentService;
 import com.lukasz.api.utils.Tariff;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -27,14 +29,18 @@ public class ManagementService {
     private final TicketService ticketService;
     private final BillMapper billMapper;
     private final ClientService clientService;
+    private final PaymentService paymentService;
+
     protected final Log logger = LogFactory.getLog(getClass());
 
     @Autowired
-    ManagementService(BillService billService, TicketService ticketService, BillMapper billMapper, ClientService clientService) {
+    ManagementService(BillService billService, TicketService ticketService, BillMapper billMapper,
+                      ClientService clientService, PaymentService paymentService) {
         this.billService = billService;
         this.ticketService = ticketService;
         this.billMapper = billMapper;
         this.clientService = clientService;
+        this.paymentService = paymentService;
     }
 
     public TicketDto addTicket(ManagementDto managementDto) {
@@ -74,6 +80,10 @@ public class ManagementService {
             logger.info("Gotowy billDto " + billDto);
             BillDto addedBillDto = billService.addBill(billDto);
             logger.info("Taki bill dodalem " + addedBillDto);
+            //paymentService.addPayment((HttpServletRequest) managementDto);
+            //PŁATNOŚCI TUTAJ - PAYMENT
+
+
             //return addedBillDto;
         }
 
