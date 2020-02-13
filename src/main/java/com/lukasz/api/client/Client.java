@@ -18,14 +18,12 @@ import java.util.UUID;
 @Entity
 public class Client {
     @Id
-    //@org.hibernate.annotations.Type(type="org.hibernate.type.PostgresUUIDType")
     @Type(type = "uuid-char")
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-
     private UUID clientId;
     private String name;
     private String surname;

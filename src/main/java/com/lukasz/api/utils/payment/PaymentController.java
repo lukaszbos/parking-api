@@ -24,7 +24,7 @@ public class PaymentController {
     @PostMapping()
     public ResponseEntity<String> addToken(@RequestParam String stripeToken, @RequestParam String amount) {
         //String response = "xd";
-        String response = paymentService.addPayment(stripeToken, amount);
+        String response = paymentService.chargePayment(stripeToken, amount);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 

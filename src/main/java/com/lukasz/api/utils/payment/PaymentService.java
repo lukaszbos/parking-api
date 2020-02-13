@@ -11,7 +11,7 @@ import java.util.Map;
 public class PaymentService {
 
     @SneakyThrows
-    public String addPayment(String stripeToken, String stripeAmount) {
+    public String chargePayment(String stripeToken, String stripeAmount) {
         // Set your secret key: remember to change this to your live secret key in production
         // See your keys here: https://dashboard.stripe.com/account/apikeys
         Stripe.apiKey = "sk_test_tGwcDlYQEG0HQ4DcBGcSl2rQ00CdPViIfu";
@@ -29,6 +29,6 @@ public class PaymentService {
         params.put("source", stripeToken);
         Charge charge = Charge.create(params);
 
-        return stripeToken;
+        return "200 OK";
     }
 }

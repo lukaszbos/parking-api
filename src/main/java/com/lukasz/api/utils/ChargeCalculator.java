@@ -56,3 +56,16 @@ public class ChargeCalculator {
     }
 
 }
+
+    public String chargePayment(String stripeToken, String stripeAmount) {
+        Stripe.apiKey = "sk_test_tGwcDlYQEG0HQ4DcBGcSl2rQ00CdPViIfu";
+        int amount = Integer.parseInt(stripeAmount) * 100; // bo odebrana kwsavota nie
+        // zawiera przecinków
+        Map<String, Object> params = new HashMap<>();
+        params.put("amount", amount);
+        params.put("currency", "pln");
+        params.put("description", "Example charge");
+        params.put("source", stripeToken);
+        Charge.create(params);
+        return "200 OK";
+    }
